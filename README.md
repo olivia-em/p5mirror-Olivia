@@ -15,18 +15,18 @@ open https://nodejs.org/en/download
 # where p5name is our editor.p5js user name
 # run this bash script in the root of your repo
 
-bin/mirror.sh --user p5name
+bin/mirror.sh --user oliviaemlee
 
 # and then commit changes in github desktop
 
 # remove sketches not present online
-bin/mirror.sh --user p5name --clean
+bin/mirror.sh --user oliviaemlee --clean
 
 # full update, download all projects
-bin/mirror.sh --user p5name --full
+bin/mirror.sh --user oliviaemlee --full
 
 # run in verbose mode to show details of steps for debugging
-bin/mirror.sh --user p5name --verbose
+bin/mirror.sh --user oliviaemlee --verbose
 
 ```
 
@@ -34,11 +34,11 @@ bin/mirror.sh --user p5name --verbose
 
 ```
 # Edit this line for your editor.p5js user name
-bin/mirror.sh --user p5name
+bin/mirror.sh --user oliviaemlee
 
-bin/mirror.sh --user p5name --clean
-bin/mirror.sh --user p5name --full
-bin/mirror.sh --user p5name --verbose
+bin/mirror.sh --user oliviaemlee --clean
+bin/mirror.sh --user oliviaemlee --full
+bin/mirror.sh --user oliviaemlee --verbose
 
 ```
 
@@ -112,19 +112,19 @@ Generated listing of editor.p5js projects
 #   and create markdown listing files
 #   only projects updated since last mirror are downloaded
 #
-bin/mirror.sh --user p5name
+bin/mirror.sh --user oliviaemlee
 
 # full update, download all projects
 #
-bin/mirror.sh --user p5name --full
+bin/mirror.sh --user oliviaemlee --full
 
 # run in verbose mode to show details of steps for debugging
 #
-bin/mirror.sh --user p5name --verbose
+bin/mirror.sh --user oliviaemlee --verbose
 
 # remove sketches not present online
 #
-bin/mirror.sh --user p5name --clean
+bin/mirror.sh --user oliviaemlee --clean
 
 ```
 
