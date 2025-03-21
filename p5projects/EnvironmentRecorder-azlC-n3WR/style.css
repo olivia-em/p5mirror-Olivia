@@ -1,0 +1,27 @@
+@font-face {
+  font-family: Roboto;
+  src: url("/IBM.ttf")
+  format("opentype");
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+button {
+  font-family: Roboto;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  background:  darkblue;
+}
+
+button:hover {
+  padding: 6px;
+}
