@@ -1,6 +1,17 @@
 # Sketches for oliviaemlee
-170 sketches  
-[portals](https://editor.p5js.org/oliviaemlee/sketches/CDwTbFgAL)<!-- 2025-03-21T13:54:01.577Z -->  
+181 sketches  
+[portals](https://editor.p5js.org/oliviaemlee/sketches/CDwTbFgAL)<!-- 2025-04-04T14:51:14.859Z -->  
+[ims02-olivia](https://editor.p5js.org/oliviaemlee/sketches/DFjH5EV8I)<!-- 2025-04-03T22:47:52.877Z -->  
+[tracery template copy](https://editor.p5js.org/oliviaemlee/sketches/tcd70av3o)<!-- 2025-04-02T01:12:25.594Z -->  
+[bulleTimbre-board](https://editor.p5js.org/oliviaemlee/sketches/2pD43zzAC)<!-- 2025-04-01T13:40:54.052Z -->  
+[vector arrow copy](https://editor.p5js.org/oliviaemlee/sketches/Q8vzZpAZp)<!-- 2025-04-01T03:14:09.350Z -->  
+[Text in 3D copy](https://editor.p5js.org/oliviaemlee/sketches/PCqTAKnLM)<!-- 2025-03-30T22:44:02.141Z -->  
+[Text in 3D copy copy](https://editor.p5js.org/oliviaemlee/sketches/b9zSWwvDk)<!-- 2025-03-30T22:40:23.139Z -->  
+[Text in 3D copy copy](https://editor.p5js.org/oliviaemlee/sketches/gzMBNSyM-)<!-- 2025-03-30T22:06:06.802Z -->  
+[Sampler\_more\_samples](https://editor.p5js.org/oliviaemlee/sketches/gieEY0FBS)<!-- 2025-03-28T01:08:31.124Z -->  
+[bulleTimbre board](https://editor.p5js.org/oliviaemlee/sketches/tsqr57GS5)<!-- 2025-03-28T01:04:03.068Z -->  
+[Effects copy](https://editor.p5js.org/oliviaemlee/sketches/xgvMNNad9)<!-- 2025-03-28T00:49:27.186Z -->  
+[DRUMPADS copy](https://editor.p5js.org/oliviaemlee/sketches/kAXseyzEi)<!-- 2025-03-21T18:07:49.973Z -->  
 [portals edge detection copy](https://editor.p5js.org/oliviaemlee/sketches/jfq29Ljfs)<!-- 2025-03-20T19:55:43.601Z -->  
 [rippleMask](https://editor.p5js.org/oliviaemlee/sketches/19tH6xg5v)<!-- 2025-03-20T00:06:49.411Z -->  
 [portals video tunnel - semi-defunct](https://editor.p5js.org/oliviaemlee/sketches/PC3hnf8UY)<!-- 2025-03-19T17:42:35.655Z -->  

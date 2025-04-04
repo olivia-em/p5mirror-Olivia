@@ -1,62 +1,86 @@
 // Animated Fisheye Effect
 // https://editor.p5js.org/jeffThompson/sketches/amZAWPv9S
-
 let bodySegmentation;
 let video;
 let segmentation;
 let personImage;
+let fullscreenButton;
 
 let options = {
   maskType: "person",
 };
 
-let portals = [];
 let fishEye;
 
 function preload() {
-  // let images = 3;
-  // for (let i = 1; i <= images; i++) {
-  //   let path = 'images/' + i + '.jpeg';
-  //   loadImage(path, img => {
-  //     img.resize(640, 480);
-  //     portals.push(img);
-  //   });
-  // }
   bodySegmentation = ml5.bodySegmentation("BodyPix", options);
 }
 
 function setup() {
-  createCanvas(640, 480);
-  pixelDensity(1)
-  
+  createCanvas(windowWidth, windowHeight);
+  pixelDensity(1);
+
   video = createCapture(VIDEO);
-  video.size(640, 480);
+  video.size(640, 480); // Fixed capture size
   video.hide();
 
   bodySegmentation.detectStart(video, gotResults);
 
   personImage = createImage(video.width, video.height);
-  fishEye1 = createGraphics(video.width, video.height);
-  
+  fishEye = createGraphics(video.width, video.height);
+
   frameRate(30);
+
+  // Create fullscreen button
+  fullscreenButton = createButton("Fullscreen");
+  fullscreenButton.position(10, 10);
+  fullscreenButton.mousePressed(toggleFullscreen);
+}
+
+function toggleFullscreen() {
+  let fs = fullscreen();
+  fullscreen(!fs);
+  fullscreenButton.style("display", fs ? "block" : "none");
+  setTimeout(() => {
+    resizeCanvas(windowWidth, windowHeight);
+  }, 100);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  fullscreenButton.style("display", fullscreen() ? "none" : "block");
 }
 
 function draw() {
   background(0);
 
-  applyAnimatedFisheyeEffect(video, fishEye1, width / 2, height / 2);
-  image(video, 0, 0, width, height);
- // image(fishEye1, 0, 0, width, height);
-  if (segmentation) {  
-   // copyForegroundPixels(video, segmentation.mask, personImage);
-   copyForegroundPixels(fishEye1, segmentation.mask, personImage);
-    translate(width,0);
+  let videoAspect = video.width / video.height;
+  let canvasAspect = width / height;
+
+  let drawWidth, drawHeight;
+  if (canvasAspect > videoAspect) {
+    drawWidth = width;
+    drawHeight = width / videoAspect;
+  } else {
+    drawHeight = height;
+    drawWidth = height * videoAspect;
+  }
+
+  let xOffset = (width - drawWidth) / 2;
+  let yOffset = (height - drawHeight) / 2;
+
+  applyAnimatedFisheyeEffect(video, fishEye, video.width / 2, video.height / 2);
+  image(video, xOffset, yOffset, drawWidth, drawHeight);
+
+  if (segmentation) {
+    copyForegroundPixels(fishEye, segmentation.mask, personImage);
+    push();
+    translate(width, 0);
     scale(-1, 1);
-    image(personImage, 0, 0, width, height);
+    image(personImage, xOffset, yOffset, drawWidth, drawHeight);
+    pop();
   }
 }
-
-// function for copying pixels based on segmentation
 
 function copyForegroundPixels(imgSource, imgMask, imgResult) {
   imgSource.loadPixels();
@@ -67,39 +91,31 @@ function copyForegroundPixels(imgSource, imgMask, imgResult) {
   const imgChannels = 4;
 
   for (let i = 0; i < totalPixels; i += imgChannels) {
-    let maskR = imgMask.pixels[i + 3]; 
+    let maskR = imgMask.pixels[i + 3];
 
-    if (maskR === 255) { 
+    if (maskR === 255) {
       imgResult.pixels[i + 3] = 0;
-  
     } else {
       imgResult.pixels[i] = imgSource.pixels[i];
       imgResult.pixels[i + 1] = imgSource.pixels[i + 1];
       imgResult.pixels[i + 2] = imgSource.pixels[i + 2];
-      imgResult.pixels[i + 3] = 255; // Keep fully opaque
+      imgResult.pixels[i + 3] = 255;
     }
   }
 
   imgResult.updatePixels();
 }
 
-
-// Callback for body segmentation
 function gotResults(result) {
   segmentation = result;
 }
 
-// Animated Fisheye Effect
-// I used chatGPT to animate and optimize this function so it would be faster... I'm not sure what "Uint8ClampedArray" is though
-
 function applyAnimatedFisheyeEffect(input, output, centerX, centerY) {
   input.loadPixels();
   output.loadPixels();
-  
   let maxDistance = dist(centerX, centerY, 0, 0);
   let tempPixels = new Uint8ClampedArray(output.pixels);
-
-  let time = frameCount / 10; // **Time-based animation**
+  let time = frameCount / 10;
 
   for (let y = 0; y < input.height; y++) {
     for (let x = 0; x < input.width; x++) {
@@ -108,23 +124,20 @@ function applyAnimatedFisheyeEffect(input, output, centerX, centerY) {
       let distance = sqrt(dx * dx + dy * dy);
       let angle = atan2(dy, dx);
 
-   // **Apply distortion effect**
-     distance = distance + 100 * sin((distance / 10) + time);
-      // angle = angle * angle / TWO_PI;
-      //  distance = distance * distance / min(width,height);
+      distance = distance + 100 * sin((distance / 10) + time);
       let tempX = floor(centerX + cos(angle) * distance);
       let tempY = floor(centerY + sin(angle) * distance);
 
       if (tempX >= 0 && tempX < input.width && tempY >= 0 && tempY < input.height) {
         let srcIndex = (tempY * input.width + tempX) * 4;
         let dstIndex = (y * input.width + x) * 4;
-        
+
         tempPixels[dstIndex] = input.pixels[srcIndex];
         tempPixels[dstIndex + 1] = input.pixels[srcIndex + 1];
         tempPixels[dstIndex + 2] = input.pixels[srcIndex + 2];
-        tempPixels[dstIndex + 3] = input.pixels[srcIndex + 3]; // Preserve alpha
+        tempPixels[dstIndex + 3] = input.pixels[srcIndex + 3];
       } else {
-        tempPixels[(y * input.width + x) * 4 + 3] = 0; // Make out-of-bounds pixels transparent
+        tempPixels[(y * input.width + x) * 4 + 3] = 0;
       }
     }
   }

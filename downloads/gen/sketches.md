@@ -1,5 +1,5 @@
 # Sketches for oliviaemlee
-170 sketches  
+181 sketches  
 [1 drum pads starter copy](https://editor.p5js.org/oliviaemlee/sketches/SnN_At8YN)<!-- 2025-02-20T20:45:25.798Z -->  
 [10 - Comet Shower - Perlin Noise Flow Field responds to Volume copy](https://editor.p5js.org/oliviaemlee/sketches/VDeQgWYs8)<!-- 2024-12-11T21:33:27.964Z -->  
 [20columns-alternating](https://editor.p5js.org/oliviaemlee/sketches/axXeZUndn)<!-- 2024-09-30T19:03:30.035Z -->  
@@ -33,6 +33,8 @@
 [bouncyballs20ANDclick](https://editor.p5js.org/oliviaemlee/sketches/Oyybw7DP6)<!-- 2024-10-16T18:04:36.153Z -->  
 [bouncyballs20ANDclickANDtomouse](https://editor.p5js.org/oliviaemlee/sketches/MlqX5C4Jc)<!-- 2024-10-16T18:25:10.138Z -->  
 [bouncyballs20ANDclickANDtomouseANDdelete](https://editor.p5js.org/oliviaemlee/sketches/FUw4TJ0QV)<!-- 2024-10-17T01:45:41.488Z -->  
+[bulleTimbre board](https://editor.p5js.org/oliviaemlee/sketches/tsqr57GS5)<!-- 2025-03-28T01:04:03.068Z -->  
+[bulleTimbre-board](https://editor.p5js.org/oliviaemlee/sketches/2pD43zzAC)<!-- 2025-04-01T13:40:54.052Z -->  
 [CC 102 - 2D Water Ripples copy copy](https://editor.p5js.org/oliviaemlee/sketches/wrU7eMpas)<!-- 2025-03-14T15:49:05.256Z -->  
 [checkerboard](https://editor.p5js.org/oliviaemlee/sketches/OvYPZM-5V)<!-- 2024-10-01T17:54:37.129Z -->  
 [CircleLerp](https://editor.p5js.org/oliviaemlee/sketches/IyF_vAsbd)<!-- 2024-09-19T16:18:03.632Z -->  
@@ -57,6 +59,8 @@
 [drum beat starter COPY](https://editor.p5js.org/oliviaemlee/sketches/dDhoPENQv)<!-- 2025-02-11T19:00:21.310Z -->  
 [drum kit pads COPY](https://editor.p5js.org/oliviaemlee/sketches/1EXsmsLSg)<!-- 2025-02-11T19:00:29.881Z -->  
 [DRUMPADS](https://editor.p5js.org/oliviaemlee/sketches/YIxktzOSy)<!-- 2025-02-25T17:35:01.238Z -->  
+[DRUMPADS copy](https://editor.p5js.org/oliviaemlee/sketches/kAXseyzEi)<!-- 2025-03-21T18:07:49.973Z -->  
+[Effects copy](https://editor.p5js.org/oliviaemlee/sketches/xgvMNNad9)<!-- 2025-03-28T00:49:27.186Z -->  
 [Encode 1](https://editor.p5js.org/oliviaemlee/sketches/KlU9iXRev)<!-- 2025-02-01T18:38:25.407Z -->  
 [Encode 2](https://editor.p5js.org/oliviaemlee/sketches/35ZIDviOf)<!-- 2025-02-01T18:38:37.196Z -->  
 [Encode 3](https://editor.p5js.org/oliviaemlee/sketches/76VEVYY1W)<!-- 2025-02-18T18:05:48.551Z -->  
@@ -74,6 +78,7 @@
 [half-sec-rect](https://editor.p5js.org/oliviaemlee/sketches/M7_KjdmXB)<!-- 2024-09-24T19:47:55.953Z -->  
 [hue steps \!](https://editor.p5js.org/oliviaemlee/sketches/7Ic16lG4s)<!-- 2024-11-23T00:15:16.633Z -->  
 [image-array](https://editor.p5js.org/oliviaemlee/sketches/mfvnysD5W)<!-- 2025-03-17T00:16:33.160Z -->  
+[ims02-olivia](https://editor.p5js.org/oliviaemlee/sketches/DFjH5EV8I)<!-- 2025-04-03T22:47:52.877Z -->  
 [instrument starter](https://editor.p5js.org/oliviaemlee/sketches/KhZmURc0p)<!-- 2025-01-24T22:48:28.962Z -->  
 [it's the same i promise copy](https://editor.p5js.org/oliviaemlee/sketches/46d5sb41i)<!-- 2025-02-03T15:34:59.786Z -->  
 [Laser  copy](https://editor.p5js.org/oliviaemlee/sketches/hLBbTmPCo)<!-- 2024-12-03T19:48:35.360Z -->  
@@ -118,7 +123,7 @@
 [playSong](https://editor.p5js.org/oliviaemlee/sketches/8LpmygscG)<!-- 2024-11-11T18:49:53.833Z -->  
 [playSongs](https://editor.p5js.org/oliviaemlee/sketches/OXCThdElg)<!-- 2024-11-11T19:18:28.171Z -->  
 [PoolSlider](https://editor.p5js.org/oliviaemlee/sketches/OmTgEU4u5)<!-- 2024-09-26T17:44:57.078Z -->  
-[portals](https://editor.p5js.org/oliviaemlee/sketches/CDwTbFgAL)<!-- 2025-03-21T13:54:01.577Z -->  
+[portals](https://editor.p5js.org/oliviaemlee/sketches/CDwTbFgAL)<!-- 2025-04-04T14:51:14.859Z -->  
 [portals - debug](https://editor.p5js.org/oliviaemlee/sketches/LlBlIUnvm)<!-- 2025-03-17T17:37:05.148Z -->  
 [portals 1:1](https://editor.p5js.org/oliviaemlee/sketches/B06lCkgRP)<!-- 2025-03-17T19:33:05.234Z -->  
 [portals edge detection](https://editor.p5js.org/oliviaemlee/sketches/z5GXs_bSH)<!-- 2025-03-17T17:36:08.591Z -->  
@@ -141,6 +146,7 @@
 [Rorshach Test](https://editor.p5js.org/oliviaemlee/sketches/hWTwcw7td)<!-- 2024-04-22T15:24:31.430Z -->  
 [RUdaft? (punkhands)](https://editor.p5js.org/oliviaemlee/sketches/F0KI4rxeMH)<!-- 2024-11-21T18:46:03.650Z -->  
 [RUdaft? (punkhands) \[DAVE'S COPY\]](https://editor.p5js.org/oliviaemlee/sketches/1gZcIXjjs)<!-- 2024-11-21T17:58:56.856Z -->  
+[Sampler\_more\_samples](https://editor.p5js.org/oliviaemlee/sketches/gieEY0FBS)<!-- 2025-03-28T01:08:31.124Z -->  
 [Select Cameras copy](https://editor.p5js.org/oliviaemlee/sketches/mgWmC7PwD)<!-- 2024-12-14T16:30:32.228Z -->  
 [Self-Sketch](https://editor.p5js.org/oliviaemlee/sketches/__-XlQIxw)<!-- 2024-09-12T16:35:12.087Z -->  
 [Self-SketchFUNCTIONS](https://editor.p5js.org/oliviaemlee/sketches/Mwur8MqSK)<!-- 2024-10-08T20:42:48.393Z -->  
@@ -154,8 +160,13 @@
 [spectrum](https://editor.p5js.org/oliviaemlee/sketches/Xmz5q42NY)<!-- 2024-10-31T16:53:07.523Z -->  
 [Succinct jump](https://editor.p5js.org/oliviaemlee/sketches/WsCUaqjFK)<!-- 2025-02-03T15:17:36.094Z -->  
 [Tempo / Speed COPY](https://editor.p5js.org/oliviaemlee/sketches/2m3G6YlVi)<!-- 2025-02-11T19:24:13.945Z -->  
+[Text in 3D copy](https://editor.p5js.org/oliviaemlee/sketches/PCqTAKnLM)<!-- 2025-03-30T22:44:02.141Z -->  
+[Text in 3D copy copy](https://editor.p5js.org/oliviaemlee/sketches/b9zSWwvDk)<!-- 2025-03-30T22:40:23.139Z -->  
+[Text in 3D copy copy](https://editor.p5js.org/oliviaemlee/sketches/gzMBNSyM-)<!-- 2025-03-30T22:06:06.802Z -->  
 [Tone.Oscillator starter](https://editor.p5js.org/oliviaemlee/sketches/hmyCLota9)<!-- 2025-03-18T17:19:22.112Z -->  
 [tongue-twister](https://editor.p5js.org/oliviaemlee/sketches/ppvLe_mKm)<!-- 2024-11-26T20:03:41.445Z -->  
+[tracery template copy](https://editor.p5js.org/oliviaemlee/sketches/tcd70av3o)<!-- 2025-04-02T01:12:25.594Z -->  
+[vector arrow copy](https://editor.p5js.org/oliviaemlee/sketches/Q8vzZpAZp)<!-- 2025-04-01T03:14:09.350Z -->  
 [videoKILL](https://editor.p5js.org/oliviaemlee/sketches/MvQ3u87xH)<!-- 2024-12-03T20:35:58.116Z -->  
 [videoKILL - fin](https://editor.p5js.org/oliviaemlee/sketches/e5eQotsBQ)<!-- 2024-12-15T17:55:51.119Z -->  
 [videoKill - final](https://editor.p5js.org/oliviaemlee/sketches/Yz1MbYvXvr)<!-- 2024-12-04T00:07:40.191Z -->  

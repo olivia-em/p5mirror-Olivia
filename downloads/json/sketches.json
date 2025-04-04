@@ -2978,6 +2978,315 @@
     "id": "FUw4TJ0QV"
   },
   {
+    "_id": "tsqr57GS5",
+    "name": "bulleTimbre board",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e5e85bcc44214999184124",
+          "67e5e85bcc44214999184123",
+          "67e5e85bcc44214999184125"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5e85bcc44214999184126",
+        "createdAt": "2025-03-28T01:04:03.068Z",
+        "updatedAt": "2025-03-28T01:04:03.068Z",
+        "id": "67e5e85bcc44214999184126"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let stickyNotes = [];\nlet boardX, boardY, boardSize, sw;\nlet dim;\n\nfunction setup() {\n  dim = min(windowWidth, windowHeight);\n  sw = dim / 30;\n  createCanvas(dim, dim - dim / 4);\n\n  // Board Area\n  boardX = dim / 4 + sw / 2;\n  boardY = sw / 2;\n  boardSize = dim - dim / 4 - sw;\n\n  background(200);\n  fill('#C18E69');\n  stroke('#633c32');\n  strokeWeight(sw);\n  square(boardX, boardY, boardSize);\n\n  // Create initial sticky note\n  stickyNotes.push(new StickyNote(dim/35, dim/35));\n}\n\nfunction draw() {\n  // Continuously check for notes that have been moved into the board\n  for (let note of stickyNotes) {\n    note.update();\n  }\n}\n\nclass StickyNote {\n  constructor(x, y) {\n    this.note = createDiv('Note');\n    this.note.position(x, y);\n    this.note.size(dim/6, dim/6);\n    this.note.style('font-size', '16px');\n    this.note.style('font-family', 'Comic Sans MS');\n    this.note.style('background', 'orchid');\n    this.note.style('padding', '5px');\n    this.note.style('border', '2px solid purple');\n    this.note.draggable();\n\n    this.panel = createDiv('');\n    this.panel.position(x, y * 23);\n    this.panel.size(100,24);\n    this.panel.style('background', 'orchid');\n    this.panel.style('padding', '5px');\n    this.panel.style('text-align', 'center');\n\n    this.textInput = createInput('Note');\n    this.textInput.size(90);\n    this.textInput.parent(this.panel);\n\n    this.textInput.input(() => {\n      this.note.html(this.textInput.value());\n    });\n\n    this.moved = false;\n  }\n\n  update() {\n    let x = this.note.position().x;\n    let y = this.note.position().y;\n\n    if (!this.moved && x > boardX && x < boardX + boardSize && y > boardY && y < boardY + boardSize) {\n      this.moved = true;\n      stickyNotes.push(new StickyNote(dim/35, dim/35)); // Create a new sticky note at the initial position\n    }\n  }\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e5e85bcc44214999184123",
+        "createdAt": "2025-03-28T01:04:03.068Z",
+        "updatedAt": "2025-03-28T01:04:03.068Z",
+        "id": "67e5e85bcc44214999184123"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5e85bcc44214999184124",
+        "createdAt": "2025-03-28T01:04:03.068Z",
+        "updatedAt": "2025-03-28T01:04:03.068Z",
+        "id": "67e5e85bcc44214999184124"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5e85bcc44214999184125",
+        "createdAt": "2025-03-28T01:04:03.068Z",
+        "updatedAt": "2025-03-28T01:04:03.068Z",
+        "id": "67e5e85bcc44214999184125"
+      }
+    ],
+    "updatedAt": "2025-03-28T01:04:03.068Z",
+    "createdAt": "2025-03-28T01:02:45.363Z",
+    "id": "tsqr57GS5"
+  },
+  {
+    "_id": "2pD43zzAC",
+    "name": "bulleTimbre-board",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e5f6910d4d6766f8693628",
+          "67e5f6910d4d6766f8693629",
+          "67e5f6910d4d6766f8693638",
+          "67e5f6910d4d6766f8693639"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693627",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693627"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// https://p5js.org/reference/p5.Element/draggable/\n\n// TYPE FIRST\n// left to right placemnet determines panning\n// up and down determines delay\n\n// Create a gain node\nlet gainNode = new Tone.Gain(0.5).toDestination(); // Default volume at 50%\n\nlet sampler = new Tone.Sampler({\n  A1: \"samples/casio/A1.mp3\",\n  B1: \"samples/casio/B1.mp3\",\n  C2: \"samples/casio/C2.mp3\",\n  D2: \"samples/casio/D2.mp3\",\n  E2: \"samples/casio/E2.mp3\",\n  F2: \"samples/casio/F2.mp3\",\n  G2: \"samples/casio/G2.mp3\",\n}).connect(gainNode); // Connect sampler to gainNode instead of toDestination\n\n\nlet keyMap = {\n  q: \"B3\",\n  w: \"A3\",\n  e: \"G3\",\n  r: \"F3\",\n  t: \"E3\",\n  y: \"D3\",\n  u: \"C3\",\n  i: \"B2\",\n  o: \"A2\",\n  p: \"G2\",\n  a: \"F2\",\n  s: \"E2\",\n  d: \"D2\",\n  f: \"C2\",\n  g: \"B1\",\n  h: \"A1\",\n  j: \"G1\",\n  k: \"F1\",\n  l: \"E1\",\n  z: \"D1\",\n  x: \"C1\",\n  c: \"B0\",\n  v: \"A0\",\n  b: \"G0\",\n  n: \"F0\",\n  m: \"E0\",\n};\n\nlet stickyNotes = [];\nlet dim, boardX, boardY, boardSize, sw;\n\nfunction setup() {\n  dim = min(windowWidth, windowHeight);\n  sw = dim / 30;\n  createCanvas(dim, dim - dim / 4);\n\n  // Draw board area\n  boardX = dim / 4 + sw / 2;\n  boardY = sw / 2;\n  boardSize = dim - dim / 4 - sw;\n  background('white');\n  fill(\"#C18E69\");\n  stroke(\"#633c32\");\n  strokeWeight(sw);\nstroke(\"#633c32\");\n  square(boardX, boardY, boardSize);\n  strokeWeight(sw/4);\n  // stroke(\"white\");\n  // line(width-2*sw,2*sw,width-2*sw,height-2*sw)\n  // line(boardX + 2*sw,height-2*sw,width-2*sw,height-2*sw)\n  // Create initial sticky note\n  stickyNotes.push(new StickyNote(dim / 35, dim / 35));\n}\n\nfunction draw() {\n  for (let note of stickyNotes) {\n    note.update();\n  }\n  \n  \n}\n\n// Store pressed keys in the active sticky note\nfunction keyPressed() {\n  let pitch = keyMap[key.toLowerCase()];\n  if (key === \" \") {\n    // Space adds a rest (null)\n    if (stickyNotes.length > 0) {\n      stickyNotes[stickyNotes.length - 1].recordSound(null);\n    }\n  } else if (pitch && sampler.loaded) {\n    sampler.triggerAttack(pitch);\n\n    // Store sound in the most recent sticky note\n    if (stickyNotes.length > 0) {\n      stickyNotes[stickyNotes.length - 1].recordSound(pitch);\n    }\n  }\n}\n\nfunction keyReleased() {\n  sampler.triggerRelease();\n}\n\nclass StickyNote {\n  constructor(x, y) {\n    this.sounds = [];\n    this.isPlaying = false;\n    this.sequence = null;\n    this.volume = 0.5;\n    \n  this.color = this.getRandomColor();\n    // Create a dedicated Gain node for volume control\n     // Create effects chains that we'll reuse\n    this.gainNode = new Tone.Gain(this.volume);\n    this.panner = new Tone.Panner(0);\n    this.delay = new Tone.FeedbackDelay({\n      delayTime: 0,\n      feedback: 0.5\n    });\n    \n    // Connect the effects chain\n    this.gainNode.connect(this.panner);\n    this.panner.connect(this.delay);\n    this.delay.toDestination();\n\n // Sticky note div with random color\n    this.note = createDiv(\"Note\");\n    this.note.position(x, y);\n    this.note.size(dim / 6, dim / 6);\n    this.note.style(\"background\", this.color);\n    this.note.style(\"padding\", \"5px\");\n    this.note.style(\"border\", \"2px solid \" + this.getDarkerShade(this.color));\n    this.note.draggable();\n\n    // Create container for controls\n    this.controlsContainer = createDiv(\"\");\n    this.controlsContainer.parent(this.note);\n    this.controlsContainer.style(\"display\", \"flex\");\n    this.controlsContainer.style(\"flex-direction\", \"column\");\n    this.controlsContainer.style(\"gap\", \"5px\");\n    this.controlsContainer.style(\"margin-top\", \"5px\");\n\n    // Play/Pause button - more seamless design\n    this.playButton = createButton(\"Play\");\n    this.playButton.mousePressed(() => this.togglePlayback());\n    this.playButton.parent(this.controlsContainer);\n    this.playButton.style(\"background\", this.getDarkerShade(this.color));\n    this.playButton.style(\"color\", \"white\");\n    this.playButton.style(\"border\", \"none\");\n    this.playButton.style(\"border-radius\", \"3px\");\n    this.playButton.style(\"padding\", \"3px 8px\");\n    this.playButton.style(\"cursor\", \"pointer\");\n    this.playButton.style(\"font-size\", \"12px\");\n    this.playButton.style(\"width\", \"80%\");\n    this.playButton.style(\"align-self\", \"center\");\n\n    // Volume control container\n    this.volumeContainer = createDiv(\"\");\n    this.volumeContainer.parent(this.controlsContainer);\n    this.volumeContainer.style(\"display\", \"flex\");\n    this.volumeContainer.style(\"align-items\", \"center\");\n    this.volumeContainer.style(\"gap\", \"5px\");\n    this.volumeContainer.style(\"width\", \"100%\");\n    this.volumeContainer.style(\"padding\", \"0 5px\");\n\n    // Volume slider - more seamless design\n    this.volumeSlider = createSlider(0, 1, this.volume, 0.1);\n    this.volumeSlider.parent(this.volumeContainer);\n    this.volumeSlider.style(\"width\", \"90%\");\n    this.volumeSlider.style(\"height\", \"4px\");\n    this.volumeSlider.style(\"appearance\", \"none\");\n    this.volumeSlider.style(\"-webkit-appearance\", \"none\");\n    this.volumeSlider.style(\"background\", this.getLighterShade(this.color));\n    this.volumeSlider.style(\"cursor\", \"pointer\");\n    this.volumeSlider.style(\"margin\", \"5px 0\");\n\n    // Prevent slider from triggering note dragging\n    this.volumeSlider.elt.addEventListener(\"mousedown\", (e) => {\n      e.stopPropagation();\n    });\n\n    this.volumeSlider.input(() => {\n      this.volume = this.volumeSlider.value();\n      console.log(\"Slider Moved:\", this.volumeSlider.value());\n      gainNode.gain.setValueAtTime(this.volume, Tone.now());\n    });\n\n    // Text input panel\n    this.panel = createDiv(\"\");\n    this.panel.position(x, y * 23);\n    this.panel.size(100, 24);\n    this.panel.style(\"background\", this.color);\n    this.panel.style(\"padding\", \"5px\");\n    this.panel.style(\"text-align\", \"center\");\n    this.panel.style(\"border\", \"1px solid \" + this.getDarkerShade(this.color));\n\n    this.textInput = createInput(\"\");\n    this.textInput.size(90);\n    this.textInput.parent(this.panel);\n    this.textInput.style(\"border\", \"none\");\n    this.textInput.style(\"background\", this.getLighterShade(this.color, 0.7));\n    this.textInput.style(\"padding\", \"2px 5px\");\n\n    this.moved = false;\n    this.finalSounds = [];\n\n    // Modify the text input to update sounds when content changes\n    this.textInput.input(() => {\n      // Update note text without re-creating controls\n      this.note.html(`<span>${this.textInput.value()}</span>`, false);\n      \n      // Re-append controls to ensure they aren't lost\n      this.controlsContainer.parent(this.note);\n\n      // Update final sounds based on current text\n      this.updateFinalSounds();\n    });\n  }\n\n  update() {\n    let x = this.note.position().x;\n    let y = this.note.position().y;\n\n    if (\n      !this.moved &&\n      x > boardX &&\n      x < boardX + boardSize &&\n      y > boardY &&\n      y < boardY + boardSize\n    ) {\n      this.moved = true;\n      stickyNotes.push(new StickyNote(dim / 35, dim / 35));\n    }\n\n    // Update volume based on vertical position\n    this.updateVolumeFromPosition();\n  }\n  \n  // Method to update volume based on position\n  updateVolumeFromPosition() {\n    \n    if (this.gainNode) {\n      this.gainNode.gain.value = this.volume;\n    }\n\n  }\n\n  // Method to parse and update sounds from text\n  updateFinalSounds() {\n    // Reset the final sounds\n    this.finalSounds = [];\n    \n    // Split the text input into words\n    let words = this.textInput.value().trim().toLowerCase().split(/\\s+/);\n    \n    // Convert words to corresponding pitches\n    words.forEach(word => {\n      for (let char of word) {\n        let pitch = keyMap[char];\n        if (pitch) {\n          this.finalSounds.push(pitch);\n        }\n      }\n    });\n\n    console.log(`Updated sounds for note: ${this.finalSounds}`);\n  }\n // Helper method to get random pastel color\n  getRandomColor() {\n    const colors = [\n      \"#FFD3B6\", // Peach\n      \"#FFAAA5\", // Light pink\n      \"#A8E6CF\", // Mint green\n      \"#DCEDC1\", // Light yellow-green\n      \"#FF8B94\", // Salmon\n      \"#CCE2CB\", // Sage\n      \"#B5EAD7\", // Light cyan\n      \"#C7CEEA\", // Lavender\n      \"#F6EAC2\", // Light yellow\n      \"#E2F0CB\"  // Light lime\n    ];\n    return colors[floor(random(colors.length))];\n  }\n  \n  // Helper method to get a darker shade of a color for borders\n  getDarkerShade(hexColor) {\n    // Convert hex to RGB\n    let r = parseInt(hexColor.slice(1, 3), 16);\n    let g = parseInt(hexColor.slice(3, 5), 16);\n    let b = parseInt(hexColor.slice(5, 7), 16);\n    \n    // Darken by reducing each component\n    r = Math.max(0, r - 40);\n    g = Math.max(0, g - 40);\n    b = Math.max(0, b - 40);\n    \n    // Convert back to hex\n    return \"#\" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);\n  }\n  \n  // Helper method to get a lighter shade of a color for highlights\n  getLighterShade(hexColor, factor = 0.85) {\n    // Convert hex to RGB\n    let r = parseInt(hexColor.slice(1, 3), 16);\n    let g = parseInt(hexColor.slice(3, 5), 16);\n    let b = parseInt(hexColor.slice(5, 7), 16);\n    \n    // Lighten by mixing with white\n    r = Math.min(255, r + Math.round((255 - r) * factor));\n    g = Math.min(255, g + Math.round((255 - g) * factor));\n    b = Math.min(255, b + Math.round((255 - b) * factor));\n    \n    // Convert back to hex\n    return \"#\" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);\n  }\n\n  recordSound(pitch) {\n    this.sounds.push(pitch);\n  }\n\n  togglePlayback() {\n    if (this.isPlaying) {\n      this.stopSequence();\n    } else {\n      this.playSequence();\n    }\n  }\n\n  playSequence() {\n    if (this.finalSounds.length === 0) return;\n\n    // Create audio effects based on note position\n    let x = this.note.position().x;\n    let y = this.note.position().y;\n\n    // Map position to effect parameters\n    let panAmount = constrain(\n      map(x, boardX, boardX + boardSize, -1, 1),\n      -1,\n      1\n    );\n\n    let delayAmount = constrain(\n      map(y, boardY, boardY + boardSize, 0, 0.5),\n      0,\n      0.5\n    );\n\n    // Use the current volume value\n    let volumeAmount = this.volume;\n\n    // Console log the pan, delay, and volume amounts\n    console.log(`Sticky Note - Pan: ${panAmount.toFixed(2)}, Delay: ${delayAmount.toFixed(2)}, Volume: ${volumeAmount.toFixed(2)}`);\n\n    // Update effect parameters\n    this.panner.pan.value = panAmount;\n    this.delay.delayTime.value = delayAmount;\n    this.gainNode.gain.value = volumeAmount;\n\n    // Create a temporary sampler just for this sequence with our effects chain\n    let noteSpecificSampler = new Tone.Sampler({\n      A1: \"samples/casio/A1.mp3\",\n      B1: \"samples/casio/B1.mp3\",\n      C2: \"samples/casio/C2.mp3\",\n      D2: \"samples/casio/D2.mp3\",\n      E2: \"samples/casio/E2.mp3\",\n      F2: \"samples/casio/F2.mp3\",\n      G2: \"samples/casio/G2.mp3\",\n    }).connect(this.gainNode); // Connect to our effects chain\n\n    // Create a new sequence specific to this sticky note\n    this.sequence = new Tone.Sequence(\n      (time, note) => {\n        if (note !== null) {\n          let currentVolume = this.volumeSlider.value();\n          noteSpecificSampler.triggerAttackRelease(note, \"8n\", time, currentVolume);\n        }\n      },\n      this.finalSounds,\n      \"8n\"\n    );\n    \n    this.sequence.loop = true;\n    this.sequence.start(0);\n    Tone.Transport.start();\n\n    this.isPlaying = true;\n    this.playButton.html(\"Pause\");\n    \n    // Store the sampler so we can dispose of it later\n    this.noteSpecificSampler = noteSpecificSampler;\n  }\n  \n  stopSequence() {\n    if (this.sequence) {\n      this.sequence.stop();\n      this.sequence.dispose();\n      this.sequence = null;\n    }\n    \n    // Dispose of the temporary sampler\n    if (this.noteSpecificSampler) {\n      this.noteSpecificSampler.dispose();\n      this.noteSpecificSampler = null;\n    }\n    \n    this.isPlaying = false;\n    this.playButton.html(\"Play\");\n  }\n}",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e5f6910d4d6766f8693638",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693638"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html>\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js\"></script>\n    <script src=\"https://unpkg.com/tone@15.0.4/build/Tone.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693628",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693628"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\n\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693639",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693639"
+      },
+      {
+        "name": "samples",
+        "content": "",
+        "children": [
+          "67e5f6910d4d6766f869362a"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693629",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693629"
+      },
+      {
+        "name": "casio",
+        "content": "",
+        "children": [
+          "67e5f6910d4d6766f869362b",
+          "67e5f6910d4d6766f869362c",
+          "67e5f6910d4d6766f869362d",
+          "67e5f6910d4d6766f869362e",
+          "67e5f6910d4d6766f869362f",
+          "67e5f6910d4d6766f8693630",
+          "67e5f6910d4d6766f8693631",
+          "67e5f6910d4d6766f8693632",
+          "67e5f6910d4d6766f8693633",
+          "67e5f6910d4d6766f8693634",
+          "67e5f6910d4d6766f8693635",
+          "67e5f6910d4d6766f8693636",
+          "67e5f6910d4d6766f8693637"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f869362a",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f869362a"
+      },
+      {
+        "name": "A2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/6cdf5d1e-97b3-4d6e-82ea-72eeacdab8d4.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f869362c",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f869362c"
+      },
+      {
+        "name": "As1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/fe3f3df4-3813-4ed9-b4d8-2c2d73d95324.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f869362d",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f869362d"
+      },
+      {
+        "name": "B1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/c10ecd83-5eb8-4b51-bfff-6bc250261c39.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f869362e",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f869362e"
+      },
+      {
+        "name": "Cs2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/13f478e0-3c77-4dfe-80bf-d309e9bf221c.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693630",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693630"
+      },
+      {
+        "name": "C2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/5508801e-0e20-4514-b53a-e8cd103e35fa.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f869362f",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f869362f"
+      },
+      {
+        "name": "D2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/3aabbaa0-1b53-442f-9e69-7db9c91761cf.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693631",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693631"
+      },
+      {
+        "name": "Ds2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/a0d642a9-da9d-4c5a-b3c8-19aa5e5d5da9.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693632",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693632"
+      },
+      {
+        "name": "E2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/13d9836b-1ff2-4395-9493-c2046269d392.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693633",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693633"
+      },
+      {
+        "name": "F2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/a06f5d95-16a5-49fd-98bd-a91656489ce4.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693634",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693634"
+      },
+      {
+        "name": "Fs2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/24652238-4f36-4410-936a-5d57703c0303.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693635",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693635"
+      },
+      {
+        "name": "G2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/0edf36d4-dbf5-442a-88a0-d7a4936f4e6c.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693636",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693636"
+      },
+      {
+        "name": "Gs1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/6e21458b-1153-487f-91bf-e4f750d72d3e.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f8693637",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f8693637"
+      },
+      {
+        "name": "A1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/b7cbd276-c827-4f5a-94ed-60db9d7482f8.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6910d4d6766f869362b",
+        "createdAt": "2025-04-01T13:40:54.052Z",
+        "updatedAt": "2025-04-01T13:40:54.052Z",
+        "id": "67e5f6910d4d6766f869362b"
+      }
+    ],
+    "createdAt": "2025-03-28T01:08:34.510Z",
+    "updatedAt": "2025-04-01T13:40:54.052Z",
+    "id": "2pD43zzAC"
+  },
+  {
     "_id": "wrU7eMpas",
     "name": "CC 102 - 2D Water Ripples copy copy",
     "files": [
@@ -4683,6 +4992,328 @@
     "id": "YIxktzOSy"
   },
   {
+    "_id": "kAXseyzEi",
+    "name": "DRUMPADS copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67dda92d86037af777242135",
+          "67dda92d86037af777242136",
+          "67dda92d86037af777242137",
+          "67dda92d86037af777242138",
+          "67dda92d86037af777242139",
+          "67dda92d86037af77724213a",
+          "67dda92d86037af77724213b",
+          "67dda92d86037af77724213c",
+          "67dda92d86037af77724213d",
+          "67dda92d86037af777242143",
+          "67dda92d86037af777242144",
+          "67dda92d86037af777242145"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242134",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242134"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// Draw your pattern\nlet w;\nlet tempoSlider;\nlet totalBeats = 0;\nlet direction = 1;\nlet cval;\n\n// SOUNDS\n\n// Create a Players object and load the \"kick.mp3\" and \"snare.mp3\" files\nconst moneySounds = new Tone.Players({\n  kickA: \"kickA.mp3\",\n  kickB: \"kickB.mp3\",\n  wood: \"wood.mp3\",\n  hh: \"hh.mp3\"\n});\n\nconst makeupSounds  = new Tone.Players({\n  c1: \"c#1.mp3\",\n  f1: \"F1.mp3\",\n  c2: \"c2.mp3\",\n  f2: \"f2.mp3\",\n});\n\n// Connect the player output to the computer's audio output\nmoneySounds.toDestination();\nmakeupSounds.toDestination();\n\n// Audio playback loop\nfunction playBeat(time) {\n  // Make sure the sound files have been completely loaded\n  if (kit.loaded) {\n    let beat = Tone.Transport.position.split(\":\")[1];\n\n    if (cells[0][beat] == 1) {\n      kit.player(\"hh\").start(time);\n    }\n    if (cells[1][beat] == 1) {\n      kit.player(\"wood\").start(time);\n    }\n    if (cells[2][beat] == 1) {\n      kit.player(\"kickA\").start(time);\n    }\n    if (cells[3][beat] == 1) {\n      kit.player(\"kickB\").start(time);\n    \n}\n\n// GRAPHICS\n// Create a loop: call playBeat every quarter note\nTone.Transport.bpm.value = 120;\nTone.Transport.timeSignature = [16, 8];\nTone.Transport.scheduleRepeat(playBeat, \"4n\");\n\nfunction setup() {\n  createCanvas(min(windowWidth, windowHeight), min(windowWidth, windowHeight));\n  let minDimension = min(width, height);\n  // rectMode(CENTER);\n}\n\nfunction windowResized() {\n  resizeCanvas(min(windowWidth, windowHeight), min(windowWidth, windowHeight));\n  let minDimension = min(width, height);\n\n}\n\nfunction draw() {\n  blendMode(BLEND);\n  background(0);\n  minDimension = min(width, height);\n\n  blendMode(LIGHTEST);\n\n  w = minDimension / 8;\n\n  noStroke();\n  for (var step = 0; step < 8; step++) {\n    // we have 4 steps\n    for (var track = 0; track < 8; track++) {\n      //we have 4 tracks\n\n      if (cells[track][step] == 1) {\n        fill(cval, 0, 255 - cval);\n        circle(step * w + w / 2, track * w * 0.8 + w / 2, (2.5 * w) / 4);\n      } else if (step % 4 === 0) {\n        fill(cval, 0, 255 - cval);\n        circle(step * w + w / 2, track * w * 0.8 + w / 2, w / 2);\n      } else {\n        fill(cval, 150, 255 - cval);\n        circle(step * w + w / 2, track * w * 0.8 + w / 2, w / 2);\n      }\n    }\n  }\n\n  // Highlight current step\n  fill(255, 30);\n  let beat = Tone.Transport.position.split(\":\")[1];\n  rect(beat * w, 0, w, w * 8 * 0.8);\n\n  // console.log(Tone.Transport.bpm.value);\n}\nfunction mousePressed() {\n  let minDimension = min(width, height);\n  w = minDimension / 8;\n\n  // Ignore clicks on the slider\n  if (mouseY > tempoSlider.y && mouseY < tempoSlider.y + 20) {\n    return;\n  }\n\n  let i = floor(mouseX / w);\n  let j = floor(mouseY / (w * 0.8));\n\n  if (i >= 0 && i < 8 && j >= 0 && j < 8) {\n    cells[j][i] = !cells[j][i];\n  }\n}\n\n// Once all audio files have been loaded, start the Tone playhead\nTone.loaded().then(function () {\n  console.log(\"loaded\");\n  Tone.Transport.start();\n});\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67dda92d86037af777242143",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242143"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.9/Tone.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af77724213a",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af77724213a"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n\n\n/* Styles the whole slider */\n.mySliders{\n  width: 80px;\n  background-color: transparent;\n  \n  /* Removes some defaults */\n  -webkit-appearance: none;\n}\n\n\n/* These styles affect what happens when the cursor is focused on the slider (i.e. clicking it) */\n.mySliders:focus {\n  \n  /* Stops the default outline showing up */\n  outline: none;\n}\n\n/* This is the \"track\" that the slider sits on  */\n.mySliders::-webkit-slider-runnable-track {\n  background: #ffffff;\n  height: 5px;\n  -webkit-appearance: none;\n  \n  /* Turns the cursor into the hand pointer icon when hovering over the slider  */\n  cursor: pointer;\n  \n}\n\n/* This is the moveable bit of the slider, known as the \"thumb\"*/\n.mySliders::-webkit-slider-thumb {\n  width: 20px;\n  height: 20px;\n  background: #ffffff;\n  cursor: pointer;\n  -webkit-appearance: none;\n  \n  /* negative top padding moves it up */\n  margin-top: -7.5px;\n \n  /* Border radius gives rounded corners, if they're big enough, you end up with circles */\n  border-radius: 10px;\n  \n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242144",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242144"
+      },
+      {
+        "name": "samples",
+        "content": "",
+        "children": [
+          "67dda92d86037af77724213e"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af77724213d",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af77724213d"
+      },
+      {
+        "name": "505",
+        "content": "",
+        "children": [
+          "67dda92d86037af77724213f",
+          "67dda92d86037af777242140",
+          "67dda92d86037af777242141",
+          "67dda92d86037af777242142"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af77724213e",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af77724213e"
+      },
+      {
+        "name": "kick.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/0bd9c876-7749-4076-9c19-79550a351c36.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242141",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242141"
+      },
+      {
+        "name": "hh.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/64988405-f571-419b-8eb8-edf0889a3a23.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af77724213f",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af77724213f"
+      },
+      {
+        "name": "snare.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/91def200-73e0-460b-a1bd-4b8bb8c1b493.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242142",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242142"
+      },
+      {
+        "name": "hho.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/c9c669af-801a-44f0-884a-98f1f542160f.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242140",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242140"
+      },
+      {
+        "name": "f2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/a20d960d-f0c0-4623-b106-096f59f46c38.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242138",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242138"
+      },
+      {
+        "name": "F1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/0d873490-0154-4c3e-adf9-6de119afaf3d.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242135",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242135"
+      },
+      {
+        "name": "c2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/cae8b0c8-46f6-47ea-a92d-5bc181f14efe.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242137",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242137"
+      },
+      {
+        "name": "c#1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/95e3db88-2a69-40b6-9a12-a7a255f2e12a.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242136",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242136"
+      },
+      {
+        "name": "hh.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/c9b6e19e-e7d8-4e3c-be65-feeb9505aa35.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242139",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242139"
+      },
+      {
+        "name": "kickA.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/46ce3d3e-82e9-4d31-ba49-efee43de2bc1.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af77724213b",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af77724213b"
+      },
+      {
+        "name": "kickB.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/f752e5e0-08fc-402b-b51f-0fbf37def5d2.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af77724213c",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af77724213c"
+      },
+      {
+        "name": "wood.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/4ae3aa72-d0db-4912-a12f-77c441b4f00f.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67dda92d86037af777242145",
+        "createdAt": "2025-03-21T18:07:49.973Z",
+        "updatedAt": "2025-03-21T18:07:49.973Z",
+        "id": "67dda92d86037af777242145"
+      }
+    ],
+    "createdAt": "2025-03-21T18:00:14.112Z",
+    "updatedAt": "2025-03-21T18:07:49.973Z",
+    "id": "kAXseyzEi"
+  },
+  {
+    "_id": "xgvMNNad9",
+    "name": "Effects copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e5e4d57322fd56192c1bd5",
+          "67e5e4d57322fd56192c1bd6",
+          "67e5e4d57322fd56192c1bd8",
+          "67e5e4d57322fd56192c1bd9"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5e4d57322fd56192c1bd4",
+        "createdAt": "2025-03-28T00:49:27.186Z",
+        "updatedAt": "2025-03-28T00:49:27.186Z",
+        "id": "67e5e4d57322fd56192c1bd4"
+      },
+      {
+        "name": "sketch.js",
+        "content": "var player;\nlet delayAmount;\nvar feedbackDelay = new Tone.FeedbackDelay(delayAmount, 0.5);\n\n\n\nfunction preload(){\n  player = new Tone.Player(\"samples/congas.m4a\");\n  \n  // player properties:\n  // playbackRate:1\n  // loop:false\n  // autostart:false\n  // loopStart:0\n  // loopEnd:0\n  // retrigger:false\n  // reverse:false\n  \n  player.loop = true;\n  \n  //make loop shorter\n  // player.loopStart = 0;\n  // player.loopEnd = \"8n\";\n  player.toMaster();\n    player.connect(feedbackDelay);\n  //EFFECTS\n  // var chorus = new Tone.Chorus(1.5, 3.5, 0.5);\n  // player.toMaster();\n  // player.connect(chorus);\n  // chorus.toMaster();\n  \n//   distortion = new Tone.Distortion(0.8);\n//   player.connect(distortion);\n//   distortion.toMaster();\n  \n  \n  // var freeverb = new Tone.Freeverb(0.7,250).toMaster();\n  // // freeverb.dampening.value = 250;\n  // player.connect(freeverb);\n  \n  // var phaser = new Tone.Phaser({\n  // \t\"frequency\" : 15, \n  // \t\"octaves\" : 5, \n  // \t\"baseFrequency\" : 1000\n  // }).toMaster();\n  // player.connect(phaser);\n  \n  // var pingPong = new Tone.PingPongDelay(\"2n\", 0.2).toMaster();\n  // player.connect(pingPong);\n\n  \n//   var crusher = new Tone.BitCrusher(4).toMaster();\n//   player.connect(crusher);\n  \n  // var panner = new Tone.Panner(1).toMaster();\n  // player.connect(panner);\n  \n\n  \n  // var autoPanner = new Tone.AutoPanner(\"16n\").toMaster().start();\n  // player.connect(autoPanner);\n}\n\nfunction setup() {\n  \n}\n\nfunction draw() {\n    // player.playbackRate = map(mouseX, 0, width, 0.1, 1);\n  \n    // Map position to effect parameters\n  \n  delayAmount = map(mouseX, 0, width, 0, 1)\n  \n  feedbackDelay.delayTime.value = delayAmount;\n  \n}\n\nfunction keyPressed(){\n  if(key == ' '){\n    if(player.state == \"stopped\"){\n      player.start();   \n    }\n    else{\n      player.stop();\n    }\n  }\n}\n\nfunction mouseReleased(){\n  \n}\n\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e5e4d57322fd56192c1bd8",
+        "createdAt": "2025-03-28T00:49:27.186Z",
+        "updatedAt": "2025-03-28T00:49:27.186Z",
+        "id": "67e5e4d57322fd56192c1bd8"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html>\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js\" type=\"text/javascript\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5e4d57322fd56192c1bd5",
+        "createdAt": "2025-03-28T00:49:27.186Z",
+        "updatedAt": "2025-03-28T00:49:27.186Z",
+        "id": "67e5e4d57322fd56192c1bd5"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5e4d57322fd56192c1bd9",
+        "createdAt": "2025-03-28T00:49:27.186Z",
+        "updatedAt": "2025-03-28T00:49:27.186Z",
+        "id": "67e5e4d57322fd56192c1bd9"
+      },
+      {
+        "name": "samples",
+        "content": "",
+        "children": [
+          "67e5e4d57322fd56192c1bd7"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5e4d57322fd56192c1bd6",
+        "createdAt": "2025-03-28T00:49:27.186Z",
+        "updatedAt": "2025-03-28T00:49:27.186Z",
+        "id": "67e5e4d57322fd56192c1bd6"
+      },
+      {
+        "name": "congas.m4a",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/2347e329-7abb-44a5-a472-9f04f206575b.m4a",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5e4d57322fd56192c1bd7",
+        "createdAt": "2025-03-28T00:49:27.186Z",
+        "updatedAt": "2025-03-28T00:49:27.186Z",
+        "id": "67e5e4d57322fd56192c1bd7"
+      }
+    ],
+    "createdAt": "2025-03-27T23:52:54.092Z",
+    "updatedAt": "2025-03-28T00:49:27.186Z",
+    "id": "xgvMNNad9"
+  },
+  {
     "_id": "KlU9iXRev",
     "name": "Encode 1",
     "files": [
@@ -5922,6 +6553,284 @@
     "createdAt": "2025-03-17T00:12:38.177Z",
     "updatedAt": "2025-03-17T00:16:33.160Z",
     "id": "mfvnysD5W"
+  },
+  {
+    "_id": "DFjH5EV8I",
+    "name": "ims02-olivia",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67ef0c0dd3c0598590e448bf",
+          "67ef0bacc53e972d70dd2f87",
+          "67ef0bacc53e972d70dd2f86",
+          "67ef0cabd3c0598590e476eb",
+          "67ef0bacc53e972d70dd2f88"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67ef0bacc53e972d70dd2f89",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0bacc53e972d70dd2f89"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let videosA = [];\nlet videosB = [];\nlet totalVideos = 12;\nlet success = 1; \nlet beauty = 1;\nlet safety = 1; \nlet love = 1;\nlet family = 1; \nlet friends = 1;\n\n// p5.webserial library instance and related variables\nconst serial = new p5.WebSerial(); // WebSerial library instance\nlet portButton; // Button for port selection\nlet inData = []; // Array for incoming serial data\nlet inString = []; // String for incoming serial data\nlet outByte = 0; // Byte for outgoing serial data\n\nconst successSounds = new Tone.Players({\n  shiver: \"sounds/synth1.mp3\",\n  stronger: \"sounds/synth2.mp3\",\n}).toDestination();\n\nconst beautySounds = new Tone.Players({\n  sun: \"sounds/synth3.mp3\",\n  sweet: \"sounds/synth4.mp3\",\n}).toDestination();\n\nconst safetySounds = new Tone.Players({\n  shiver: \"sounds/synth1.mp3\",\n  stronger: \"sounds/synth2.mp3\",\n}).toDestination();\n\nconst loveSounds = new Tone.Players({\n  sun: \"sounds/synth3.mp3\",\n  sweet: \"sounds/synth4.mp3\",\n}).toDestination();\n\nconst familySounds = new Tone.Players({\n  shiver: \"sounds/synth1.mp3\",\n  stronger: \"sounds/synth2.mp3\",\n}).toDestination();\n\nconst friendsSounds = new Tone.Players({\n  sun: \"sounds/synth3.mp3\",\n  sweet: \"sounds/synth4.mp3\",\n}).toDestination();\n\n// VideoManager class to handle selection and playback\nclass VideoManager {\n  constructor() {\n    this.selectedVideo = null;\n  }\n\n  chooseVideo(index,attribute) {\n    if (videosA.length > index && videosB.length > index && attribute === 0){\n      this.selectedVideo = videosA[index];\n    } else if (videosA.length > index && videosB.length > index && attribute === 1){\n      this.selectedVideo = videosB[index];\n    }\n    if (this.selectedVideo) {\n      this.selectedVideo.loop();\n    }\n  }\n\n  stopVideo() {\n    if (this.selectedVideo) {\n      this.selectedVideo.stop();\n      this.selectedVideo = null; // Reset for next selection\n    }\n  }\n\n  displayVideo() {\n    if (this.selectedVideo) {\n      let vidAspect = this.selectedVideo.width / this.selectedVideo.height;\n      let canvasAspect = width / height;\n      let drawWidth, drawHeight;\n  \n      if (vidAspect > canvasAspect) {\n        // Video is wider than canvas — fit width\n        drawWidth = width;\n        drawHeight = width / vidAspect;\n      } else {\n        // Video is taller than canvas — fit height\n        drawHeight = height;\n        drawWidth = height * vidAspect;\n      }\n  \n      image(this.selectedVideo, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);\n    }\n  }\n  \n}\n\n// Create video managers\nlet successVideos = new VideoManager();\nlet beautyVideos = new VideoManager();\nlet safetyVideos = new VideoManager();\nlet loveVideos = new VideoManager();\nlet familyVideos = new VideoManager();\nlet friendsVideos = new VideoManager();\n\nlet videoManagers = [successVideos, beautyVideos, safetyVideos, loveVideos, familyVideos, friendsVideos];\n\nlet currentSuccessSound = null;\nlet currentBeautySound = null;\nlet currentSafetySound = null;\nlet currentLoveSound = null;\nlet currentFamilySound = null;\nlet currentFriendsSound = null;\nlet successSoundKey = null;\nlet beautySoundKey = null;\nlet safetySoundKey = null;\nlet loveSoundKey = null;\nlet familySoundKey = null;\nlet friendsSoundKey = null;\n\nfunction preload() {\n  for (let i = 1; i <= totalVideos; i++) {\n    let path = 'images/' + i + '.mp4';\n    let vid = createVideo(path);\n    vid.hide();\n    vid.speed(1);\n\n    if (i % 2 === 0) {\n      videosA.push(vid);\n    } else {\n      videosB.push(vid);\n    }\n  }\n}\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  setupWebSerial();\n}\n\n\n\n// Function to play a **single chosen** success sound and loop it manually\nfunction playSuccess() {\n  if (success === 0 && !successVideos.selectedVideo) {\n    if (!successSoundKey) {\n      let soundKeys = [\"shiver\", \"stronger\"];\n      successSoundKey = random(soundKeys); // Pick one sound and keep it\n    }\n\n    currentSuccessSound = successSounds.player(successSoundKey);\n    currentSuccessSound.start();\n\n    // Start video only when sound starts\n    if (successSoundKey === \"shiver\") {\n      successVideos.chooseVideo(0,0);\n    }\n    else {\n    successVideos.chooseVideo(0,1);\n    }\n\n    // When sound ends, restart it if success is still 0\n    currentSuccessSound.onstop = () => {\n      if (success === 0) {\n        currentSuccessSound.start(); // Restart same sound\n      }\n    };\n  }\n}\n\n// Function to stop success sounds & videos\nfunction stopSuccess() {\n  if (currentSuccessSound) {\n    currentSuccessSound.stop();\n    currentSuccessSound = null;\n  }\n  successVideos.stopVideo();\n  successSoundKey = null; // Reset so next time a new sound is picked\n}\n\n// Function to play a **single chosen** beauty sound and loop it manually\nfunction playBeauty() {\n  if (beauty === 0 && !beautyVideos.selectedVideo) {\n    if (!beautySoundKey) {\n      let soundKeys = [\"sweet\", \"sun\"];\n      beautySoundKey = random(soundKeys); // Pick one sound and keep it\n    }\n\n    currentBeautySound = beautySounds.player(beautySoundKey);\n    currentBeautySound.start();\n\n    // Start video only when sound starts\n    if (beautySoundKey === \"sun\") {\n      beautyVideos.chooseVideo(1,0);\n    } else  {\n    beautyVideos.chooseVideo(1,1);\n    }\n\n    // When sound ends, restart it if beauty is still 0\n    currentBeautySound.onstop = () => {\n      if (beauty === 0) {\n        currentBeautySound.start(); // Restart same sound\n      }\n    };\n  }\n}\n\n// Function to stop beauty sounds & videos\nfunction stopBeauty() {\n  if (currentBeautySound) {\n    currentBeautySound.stop();\n    currentBeautySound = null;\n  }\n  beautyVideos.stopVideo();\n  beautySoundKey = null; // Reset so next time a new sound is picked\n}\n\n// Function to check and trigger success state changes\nfunction checkSuccess() {\n  if (success === 0) {\n    playSuccess();\n  } else if (success === 1) {\n    stopSuccess();\n  }\n}\n\n// Function to check and trigger beauty state changes\nfunction checkBeauty() {\n  if (beauty === 0) {\n    playBeauty();\n  } else if (beauty === 1) {\n    stopBeauty();\n  }\n}\n// Function to play a **single chosen** safety sound and loop it manually\nfunction playSafety() {\n  if (safety === 0 && !safetyVideos.selectedVideo) {\n    if (!safetySoundKey) {\n      let soundKeys = [\"shiver\", \"stronger\"];\n      safetySoundKey = random(soundKeys); // Pick one sound and keep it\n    }\n\n    currentSafetySound = safetySounds.player(safetySoundKey);\n    currentSafetySound.start();\n\n    // Start video only when sound starts\n    if (safetySoundKey === \"shiver\") {\n      safetyVideos.chooseVideo(2, 0);\n    } else {\n      safetyVideos.chooseVideo(2, 1);\n    }\n\n    // When sound ends, restart it if safety is still 0\n    currentSafetySound.onstop = () => {\n      if (safety === 0) {\n        currentSafetySound.start(); // Restart same sound\n      }\n    };\n  }\n}\n\n// Function to stop safety sounds & videos\nfunction stopSafety() {\n  if (currentSafetySound) {\n    currentSafetySound.stop();\n    currentSafetySound = null;\n  }\n  safetyVideos.stopVideo();\n  safetySoundKey = null; // Reset so next time a new sound is picked\n}\n\n// Function to play a **single chosen** love sound and loop it manually\nfunction playLove() {\n  if (love === 0 && !loveVideos.selectedVideo) {\n    if (!loveSoundKey) {\n      let soundKeys = [\"sun\", \"sweet\"];\n      loveSoundKey = random(soundKeys); // Pick one sound and keep it\n    }\n\n    currentLoveSound = loveSounds.player(loveSoundKey);\n    currentLoveSound.start();\n\n    // Start video only when sound starts\n    if (loveSoundKey === \"sun\") {\n      loveVideos.chooseVideo(3, 0);\n    } else {\n      loveVideos.chooseVideo(3, 1);\n    }\n\n    // When sound ends, restart it if love is still 0\n    currentLoveSound.onstop = () => {\n      if (love === 0) {\n        currentLoveSound.start(); // Restart same sound\n      }\n    };\n  }\n}\n\n// Function to stop love sounds & videos\nfunction stopLove() {\n  if (currentLoveSound) {\n    currentLoveSound.stop();\n    currentLoveSound = null;\n  }\n  loveVideos.stopVideo();\n  loveSoundKey = null;\n}\n\n// Function to play a **single chosen** family sound and loop it manually\nfunction playFamily() {\n  if (family === 0 && !familyVideos.selectedVideo) {\n    if (!familySoundKey) {\n      let soundKeys = [\"shiver\", \"stronger\"];\n      familySoundKey = random(soundKeys);\n    }\n\n    currentFamilySound = familySounds.player(familySoundKey);\n    currentFamilySound.start();\n\n    // Start video only when sound starts\n    if (familySoundKey === \"shiver\") {\n      familyVideos.chooseVideo(4, 0);\n    } else {\n      familyVideos.chooseVideo(4, 1);\n    }\n\n    currentFamilySound.onstop = () => {\n      if (family === 0) {\n        currentFamilySound.start();\n      }\n    };\n  }\n}\n\n// Function to stop family sounds & videos\nfunction stopFamily() {\n  if (currentFamilySound) {\n    currentFamilySound.stop();\n    currentFamilySound = null;\n  }\n  familyVideos.stopVideo();\n  familySoundKey = null;\n}\n\n// Function to play a **single chosen** friends sound and loop it manually\nfunction playFriends() {\n  if (friends === 0 && !friendsVideos.selectedVideo) {\n    if (!friendsSoundKey) {\n      let soundKeys = [\"sun\", \"sweet\"];\n      friendsSoundKey = random(soundKeys);\n    }\n\n    currentFriendsSound = friendsSounds.player(friendsSoundKey);\n    currentFriendsSound.start();\n\n    // Start video only when sound starts\n    if (friendsSoundKey === \"sun\") {\n      friendsVideos.chooseVideo(5, 0);\n    } else {\n      friendsVideos.chooseVideo(5, 1);\n    }\n\n    currentFriendsSound.onstop = () => {\n      if (friends === 0) {\n        currentFriendsSound.start();\n      }\n    };\n  }\n}\n\n// Function to stop friends sounds & videos\nfunction stopFriends() {\n  if (currentFriendsSound) {\n    currentFriendsSound.stop();\n    currentFriendsSound = null;\n  }\n  friendsVideos.stopVideo();\n  friendsSoundKey = null;\n}\n\n// Function to check and trigger safety state changes\nfunction checkSafety() {\n  if (safety === 0) {\n    playSafety();\n  } else if (safety === 1) {\n    stopSafety();\n  }\n}\n\n// Function to check and trigger love state changes\nfunction checkLove() {\n  if (love === 0) {\n    playLove();\n  } else if (love === 1) {\n    stopLove();\n  }\n}\n\n// Function to check and trigger family state changes\nfunction checkFamily() {\n  if (family === 0) {\n    playFamily();\n  } else if (family === 1) {\n    stopFamily();\n  }\n}\n\n// Function to check and trigger friends state changes\nfunction checkFriends() {\n  if (friends === 0) {\n    playFriends();\n  } else if (friends === 1) {\n    stopFriends();\n  }\n}\n\n// Extend draw function to display all video categories\nfunction draw() {\n  blendMode(BLEND);\n  background(0);\n  videoManagers[0].displayVideo();\n  blendMode(DIFFERENCE);\n  videoManagers[1].displayVideo();\n  videoManagers[2].displayVideo();\n  videoManagers[3].displayVideo();\n  videoManagers[4].displayVideo();\n  videoManagers[5].displayVideo();\n  checkSuccess();\n  checkBeauty();\n  checkSafety();\n  checkLove();\n  checkFamily();\n  checkFriends();\n}\n// Handle window resizing (including exiting full-screen mode)\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n\n// Extend keyPressed to toggle new categories\nfunction keyPressed() {\n  if (key === 'f' || key === 'F') {\n    let fs = fullscreen();\n    fullscreen(!fs);\n\n    // Use a short delay before resizing the canvas to allow fullscreen mode to apply\n    setTimeout(() => {\n      resizeCanvas(windowWidth, windowHeight);\n    }, 100);\n  }\n\n  // Your existing key toggles\n  if (key === '1') success = 0;\n  else if (key === '2') success = 1;\n  else if (key === '3') beauty = 0;\n  else if (key === '4') beauty = 1;\n  else if (key === '5') safety = 0;\n  else if (key === '6') safety = 1;\n  else if (key === '7') love = 0;\n  else if (key === '8') love = 1;\n  else if (key === '9') family = 0;\n  else if (key === '0') family = 1;\n  else if (key === '-') friends = 0;\n  else if (key === '=') friends = 1;\n\n  checkSuccess();\n  checkBeauty();\n  checkSafety();\n  checkLove();\n  checkFamily();\n  checkFriends();\n}\n\n\n// Start Tone.js once loaded\nTone.loaded().then(() => {\n  console.log(\"Sounds Loaded\");\n  Tone.Transport.start();\n  checkSuccess();\n  checkBeauty();\n  checkSafety();\n  checkLove();\n  checkFamily();\n  checkFriends();\n});\n\n// serial communication\n\n// ------------------- WebSerial Setup -------------------\n\nfunction setupWebSerial() {\n  if (!navigator.serial) {\n    alert(\"WebSerial is not supported in this browser. Try Chrome or MS Edge.\");\n  }\n\n  navigator.serial.addEventListener(\"connect\", portConnect);\n  navigator.serial.addEventListener(\"disconnect\", portDisconnect);\n\n  serial.getPorts();\n  serial.on(\"noport\", makePortButton);\n  serial.on(\"portavailable\", openPort);\n  serial.on(\"requesterror\", portError);\n  serial.on(\"data\", serialEvent);\n  serial.on(\"close\", makePortButton);\n}\n\n// ------------------- Port Button Functions -------------------\n\nfunction makePortButton() {\n  portButton = createButton(\"choose port\");\n  portButton.position(10, 10);\n  portButton.mousePressed(choosePort);\n}\n\nfunction choosePort() {\n  if (portButton) portButton.show();\n  serial.requestPort();\n}\n\nfunction openPort() {\n  serial.open().then(() => {\n    console.log(\"port open\");\n    if (portButton) portButton.hide();\n  });\n}\n\n// ------------------- Serial Event Functions -------------------\n\nfunction serialEvent() {\n  let inString = serial.readStringUntil(\"\\r\\n\");\n  if (inString != null) {\n    let list = split(trim(inString), \",\");\n    if (list.length > 5) {\n      success = float(list[0]);\n      beauty = float(list[1]);\n      safety = float(list[2]);\n      love = float(list[3]);\n      family = float(list[4]);\n      friends = float(list[5]);\n      serial.write(\"x\");\n    }\n  }\n}\n\nfunction portConnect() {\n  console.log(\"port connected\");\n  serial.getPorts();\n}\n\nfunction portDisconnect() {\n  serial.close();\n  console.log(\"port disconnected\");\n}\n\nfunction portError(err) {\n  alert(\"Serial port error: \" + err);\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0bacc53e972d70dd2f86",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0bacc53e972d70dd2f86"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n       <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.9/Tone.js\"></script>\n    <script src=\"https://unpkg.com/p5-webserial@0.1.1/build/p5.webserial.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <main>\n    </main>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67ef0bacc53e972d70dd2f87",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0bacc53e972d70dd2f87"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0bacc53e972d70dd2f88",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0bacc53e972d70dd2f88"
+      },
+      {
+        "name": "images",
+        "content": "",
+        "children": [
+          "67ef0f5a8aa5ed6943ea2aa4",
+          "67ef0f5c7cd88c72807882bb",
+          "67ef0f597cd88c7280787e64",
+          "67ef0f5d7cd88c72807882d5",
+          "67ef0f5ad3c0598590e55309",
+          "67ef0f5ad3c0598590e55324",
+          "67ef0f597cd88c7280787e54",
+          "67ef0f5b8aa5ed6943ea2ade",
+          "67ef0f5b7cd88c7280788260",
+          "67ef0f5c8aa5ed6943ea2b18",
+          "67ef0f5c82adab32de7338be"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67ef0c0dd3c0598590e448bf",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0c0dd3c0598590e448bf"
+      },
+      {
+        "name": "sounds",
+        "content": "",
+        "children": [
+          "67ef0cbdd3c0598590e4786d",
+          "67ef0cc28aa5ed6943e9061e",
+          "67ef0cd6d3c0598590e486d6",
+          "67ef0cdad3c0598590e48724"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67ef0cabd3c0598590e476eb",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0cabd3c0598590e476eb"
+      },
+      {
+        "name": "synth1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/51807d13-0779-4f53-b52f-bd8c8c767fdf.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0cbdd3c0598590e4786d",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0cbdd3c0598590e4786d"
+      },
+      {
+        "name": "synth2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/7f5a18c2-a7b9-4d4a-945b-ad38f5b5ad5e.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0cc28aa5ed6943e9061e",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0cc28aa5ed6943e9061e"
+      },
+      {
+        "name": "synth3.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/14bae70f-bda4-47e7-a156-4cb048cff2ed.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0cd6d3c0598590e486d6",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0cd6d3c0598590e486d6"
+      },
+      {
+        "name": "synth4.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/e14d62c7-f8be-4790-9f1b-d09fa6e63afc.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0cdad3c0598590e48724",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0cdad3c0598590e48724"
+      },
+      {
+        "name": "4.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/0e29e0c2-8a72-4b9d-bc29-c323b9ebd2cd.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f597cd88c7280787e54",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f597cd88c7280787e54"
+      },
+      {
+        "name": "11.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/c4133ed8-ba4d-45f5-bf4c-6dee8714b9be.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f597cd88c7280787e64",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f597cd88c7280787e64"
+      },
+      {
+        "name": "1.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/bbcb8f8a-0ff1-41cd-9018-5e968c95b00a.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5a8aa5ed6943ea2aa4",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5a8aa5ed6943ea2aa4"
+      },
+      {
+        "name": "2.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/d9f3d3ba-aea5-4cc0-bba6-68cf1230c07f.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5ad3c0598590e55309",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5ad3c0598590e55309"
+      },
+      {
+        "name": "3.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/1995c740-c415-404c-8e86-17b226f4c541.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5ad3c0598590e55324",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5ad3c0598590e55324"
+      },
+      {
+        "name": "5.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/f83c770e-321f-43de-9870-628c1d2ce0c9.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5b8aa5ed6943ea2ade",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5b8aa5ed6943ea2ade"
+      },
+      {
+        "name": "6.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/00312ccc-bc8e-48a1-9499-5869ff2a01cb.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5b7cd88c7280788260",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5b7cd88c7280788260"
+      },
+      {
+        "name": "8.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/eaa590f0-d269-4e3d-bf2f-a3277c7aa520.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5c8aa5ed6943ea2b18",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5c8aa5ed6943ea2b18"
+      },
+      {
+        "name": "9.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/2b682eea-7be7-4ba0-b614-3f58abcfcc24.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5c82adab32de7338be",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5c82adab32de7338be"
+      },
+      {
+        "name": "10.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/78de4149-3df4-4efd-b1d6-dda04b1582da.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5c7cd88c72807882bb",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5c7cd88c72807882bb"
+      },
+      {
+        "name": "12.mp4",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/fc642cc6-68bf-418f-8a99-ba917834a778.mp4",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ef0f5d7cd88c72807882d5",
+        "createdAt": "2025-04-03T22:47:52.877Z",
+        "updatedAt": "2025-04-03T22:47:52.877Z",
+        "id": "67ef0f5d7cd88c72807882d5"
+      }
+    ],
+    "updatedAt": "2025-04-03T22:47:52.877Z",
+    "createdAt": "2025-04-03T22:30:09.168Z",
+    "id": "DFjH5EV8I"
   },
   {
     "_id": "KhZmURc0p",
@@ -9649,8 +10558,8 @@
         "fileType": "folder",
         "isSelectedFile": false,
         "_id": "67d6d9b8a274f44c1780c84a",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6d9b8a274f44c1780c84a"
       },
       {
@@ -9658,10 +10567,10 @@
         "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>ml5.js bodySegmentation Parts Example</title>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js\"></script>\n    <script src=\"https://unpkg.com/ml5@1/dist/ml5.min.js\"></script>\n  </head>\n  <body>\n    <script src=\"alterEgo.js\"></script>\n  </body>\n</html>\n",
         "children": [],
         "fileType": "file",
-        "isSelectedFile": false,
+        "isSelectedFile": true,
         "_id": "67d6d9b8a274f44c1780c84b",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6d9b8a274f44c1780c84b"
       },
       {
@@ -9690,8 +10599,8 @@
         "fileType": "folder",
         "isSelectedFile": false,
         "_id": "67d6ea093100737f9eec34a3",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea093100737f9eec34a3"
       },
       {
@@ -9702,8 +10611,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6ea901335b40f50234b69",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea901335b40f50234b69"
       },
       {
@@ -9714,8 +10623,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6ea903100737f9eec7214",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea903100737f9eec7214"
       },
       {
@@ -9726,8 +10635,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6ea913100737f9eec7230",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea913100737f9eec7230"
       },
       {
@@ -9738,8 +10647,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6ea92da939a486c6cc821",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea92da939a486c6cc821"
       },
       {
@@ -9750,8 +10659,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6ea921335b40f50234b94",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea921335b40f50234b94"
       },
       {
@@ -9762,8 +10671,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6ea951335b40f50234c3c",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea951335b40f50234c3c"
       },
       {
@@ -9774,8 +10683,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6ea96da939a486c6cc8fa",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea96da939a486c6cc8fa"
       },
       {
@@ -9786,8 +10695,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6ea96da939a486c6cc93a",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6ea96da939a486c6cc93a"
       },
       {
@@ -9798,8 +10707,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f046accbc245bf4c94af",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f046accbc245bf4c94af"
       },
       {
@@ -9810,8 +10719,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f0463100737f9eee13c0",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f0463100737f9eee13c0"
       },
       {
@@ -9822,8 +10731,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f0473100737f9eee1803",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f0473100737f9eee1803"
       },
       {
@@ -9834,8 +10743,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f0471335b40f50252350",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f0471335b40f50252350"
       },
       {
@@ -9846,8 +10755,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f0481335b40f50252365",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f0481335b40f50252365"
       },
       {
@@ -9858,8 +10767,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f0481335b40f5025243f",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f0481335b40f5025243f"
       },
       {
@@ -9870,8 +10779,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f049da939a486c6e8c6c",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f049da939a486c6e8c6c"
       },
       {
@@ -9882,8 +10791,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f1cf1335b40f5025f6d9",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f1cf1335b40f5025f6d9"
       },
       {
@@ -9894,8 +10803,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f22fda939a486c6f73e2",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f22fda939a486c6f73e2"
       },
       {
@@ -9906,8 +10815,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6f230accbc245bf4d8192",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6f230accbc245bf4d8192"
       },
       {
@@ -9917,8 +10826,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d6fd92accbc245bf50cd6d",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d6fd92accbc245bf50cd6d"
       },
       {
@@ -9928,19 +10837,19 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d87ba899c5027a65152083",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d87ba899c5027a65152083"
       },
       {
         "name": "alterEgo.js",
-        "content": "// Animated Fisheye Effect\n// https://editor.p5js.org/jeffThompson/sketches/amZAWPv9S\n\nlet bodySegmentation;\nlet video;\nlet segmentation;\nlet personImage;\n\nlet options = {\n  maskType: \"person\",\n};\n\nlet portals = [];\nlet fishEye;\n\nfunction preload() {\n  // let images = 3;\n  // for (let i = 1; i <= images; i++) {\n  //   let path = 'images/' + i + '.jpeg';\n  //   loadImage(path, img => {\n  //     img.resize(640, 480);\n  //     portals.push(img);\n  //   });\n  // }\n  bodySegmentation = ml5.bodySegmentation(\"BodyPix\", options);\n}\n\nfunction setup() {\n  createCanvas(640, 480);\n  pixelDensity(1)\n  \n  video = createCapture(VIDEO);\n  video.size(640, 480);\n  video.hide();\n\n  bodySegmentation.detectStart(video, gotResults);\n\n  personImage = createImage(video.width, video.height);\n  fishEye1 = createGraphics(video.width, video.height);\n  \n  frameRate(30);\n}\n\nfunction draw() {\n  background(0);\n\n  applyAnimatedFisheyeEffect(video, fishEye1, width / 2, height / 2);\n  image(video, 0, 0, width, height);\n // image(fishEye1, 0, 0, width, height);\n  if (segmentation) {  \n   // copyForegroundPixels(video, segmentation.mask, personImage);\n   copyForegroundPixels(fishEye1, segmentation.mask, personImage);\n    translate(width,0);\n    scale(-1, 1);\n    image(personImage, 0, 0, width, height);\n  }\n}\n\n// function for copying pixels based on segmentation\n\nfunction copyForegroundPixels(imgSource, imgMask, imgResult) {\n  imgSource.loadPixels();\n  imgMask.loadPixels();\n  imgResult.loadPixels();\n\n  let totalPixels = imgResult.pixels.length;\n  const imgChannels = 4;\n\n  for (let i = 0; i < totalPixels; i += imgChannels) {\n    let maskR = imgMask.pixels[i + 3]; \n\n    if (maskR === 255) { \n      imgResult.pixels[i + 3] = 0;\n  \n    } else {\n      imgResult.pixels[i] = imgSource.pixels[i];\n      imgResult.pixels[i + 1] = imgSource.pixels[i + 1];\n      imgResult.pixels[i + 2] = imgSource.pixels[i + 2];\n      imgResult.pixels[i + 3] = 255; // Keep fully opaque\n    }\n  }\n\n  imgResult.updatePixels();\n}\n\n\n// Callback for body segmentation\nfunction gotResults(result) {\n  segmentation = result;\n}\n\n// Animated Fisheye Effect\n// I used chatGPT to animate and optimize this function so it would be faster... I'm not sure what \"Uint8ClampedArray\" is though\n\nfunction applyAnimatedFisheyeEffect(input, output, centerX, centerY) {\n  input.loadPixels();\n  output.loadPixels();\n  \n  let maxDistance = dist(centerX, centerY, 0, 0);\n  let tempPixels = new Uint8ClampedArray(output.pixels);\n\n  let time = frameCount / 10; // **Time-based animation**\n\n  for (let y = 0; y < input.height; y++) {\n    for (let x = 0; x < input.width; x++) {\n      let dx = x - centerX;\n      let dy = y - centerY;\n      let distance = sqrt(dx * dx + dy * dy);\n      let angle = atan2(dy, dx);\n\n   // **Apply distortion effect**\n     distance = distance + 100 * sin((distance / 10) + time);\n      // angle = angle * angle / TWO_PI;\n      //  distance = distance * distance / min(width,height);\n      let tempX = floor(centerX + cos(angle) * distance);\n      let tempY = floor(centerY + sin(angle) * distance);\n\n      if (tempX >= 0 && tempX < input.width && tempY >= 0 && tempY < input.height) {\n        let srcIndex = (tempY * input.width + tempX) * 4;\n        let dstIndex = (y * input.width + x) * 4;\n        \n        tempPixels[dstIndex] = input.pixels[srcIndex];\n        tempPixels[dstIndex + 1] = input.pixels[srcIndex + 1];\n        tempPixels[dstIndex + 2] = input.pixels[srcIndex + 2];\n        tempPixels[dstIndex + 3] = input.pixels[srcIndex + 3]; // Preserve alpha\n      } else {\n        tempPixels[(y * input.width + x) * 4 + 3] = 0; // Make out-of-bounds pixels transparent\n      }\n    }\n  }\n\n  output.pixels.set(tempPixels);\n  output.updatePixels();\n}",
+        "content": "// Animated Fisheye Effect\n// https://editor.p5js.org/jeffThompson/sketches/amZAWPv9S\nlet bodySegmentation;\nlet video;\nlet segmentation;\nlet personImage;\nlet fullscreenButton;\n\nlet options = {\n  maskType: \"person\",\n};\n\nlet fishEye;\n\nfunction preload() {\n  bodySegmentation = ml5.bodySegmentation(\"BodyPix\", options);\n}\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  pixelDensity(1);\n\n  video = createCapture(VIDEO);\n  video.size(640, 480); // Fixed capture size\n  video.hide();\n\n  bodySegmentation.detectStart(video, gotResults);\n\n  personImage = createImage(video.width, video.height);\n  fishEye = createGraphics(video.width, video.height);\n\n  frameRate(30);\n\n  // Create fullscreen button\n  fullscreenButton = createButton(\"Fullscreen\");\n  fullscreenButton.position(10, 10);\n  fullscreenButton.mousePressed(toggleFullscreen);\n}\n\nfunction toggleFullscreen() {\n  let fs = fullscreen();\n  fullscreen(!fs);\n  fullscreenButton.style(\"display\", fs ? \"block\" : \"none\");\n  setTimeout(() => {\n    resizeCanvas(windowWidth, windowHeight);\n  }, 100);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n  fullscreenButton.style(\"display\", fullscreen() ? \"none\" : \"block\");\n}\n\nfunction draw() {\n  background(0);\n\n  let videoAspect = video.width / video.height;\n  let canvasAspect = width / height;\n\n  let drawWidth, drawHeight;\n  if (canvasAspect > videoAspect) {\n    drawWidth = width;\n    drawHeight = width / videoAspect;\n  } else {\n    drawHeight = height;\n    drawWidth = height * videoAspect;\n  }\n\n  let xOffset = (width - drawWidth) / 2;\n  let yOffset = (height - drawHeight) / 2;\n\n  applyAnimatedFisheyeEffect(video, fishEye, video.width / 2, video.height / 2);\n  image(video, xOffset, yOffset, drawWidth, drawHeight);\n\n  if (segmentation) {\n    copyForegroundPixels(fishEye, segmentation.mask, personImage);\n    push();\n    translate(width, 0);\n    scale(-1, 1);\n    image(personImage, xOffset, yOffset, drawWidth, drawHeight);\n    pop();\n  }\n}\n\nfunction copyForegroundPixels(imgSource, imgMask, imgResult) {\n  imgSource.loadPixels();\n  imgMask.loadPixels();\n  imgResult.loadPixels();\n\n  let totalPixels = imgResult.pixels.length;\n  const imgChannels = 4;\n\n  for (let i = 0; i < totalPixels; i += imgChannels) {\n    let maskR = imgMask.pixels[i + 3];\n\n    if (maskR === 255) {\n      imgResult.pixels[i + 3] = 0;\n    } else {\n      imgResult.pixels[i] = imgSource.pixels[i];\n      imgResult.pixels[i + 1] = imgSource.pixels[i + 1];\n      imgResult.pixels[i + 2] = imgSource.pixels[i + 2];\n      imgResult.pixels[i + 3] = 255;\n    }\n  }\n\n  imgResult.updatePixels();\n}\n\nfunction gotResults(result) {\n  segmentation = result;\n}\n\nfunction applyAnimatedFisheyeEffect(input, output, centerX, centerY) {\n  input.loadPixels();\n  output.loadPixels();\n  let maxDistance = dist(centerX, centerY, 0, 0);\n  let tempPixels = new Uint8ClampedArray(output.pixels);\n  let time = frameCount / 10;\n\n  for (let y = 0; y < input.height; y++) {\n    for (let x = 0; x < input.width; x++) {\n      let dx = x - centerX;\n      let dy = y - centerY;\n      let distance = sqrt(dx * dx + dy * dy);\n      let angle = atan2(dy, dx);\n\n      distance = distance + 100 * sin((distance / 10) + time);\n      let tempX = floor(centerX + cos(angle) * distance);\n      let tempY = floor(centerY + sin(angle) * distance);\n\n      if (tempX >= 0 && tempX < input.width && tempY >= 0 && tempY < input.height) {\n        let srcIndex = (tempY * input.width + tempX) * 4;\n        let dstIndex = (y * input.width + x) * 4;\n\n        tempPixels[dstIndex] = input.pixels[srcIndex];\n        tempPixels[dstIndex + 1] = input.pixels[srcIndex + 1];\n        tempPixels[dstIndex + 2] = input.pixels[srcIndex + 2];\n        tempPixels[dstIndex + 3] = input.pixels[srcIndex + 3];\n      } else {\n        tempPixels[(y * input.width + x) * 4 + 3] = 0;\n      }\n    }\n  }\n\n  output.pixels.set(tempPixels);\n  output.updatePixels();\n}\n",
         "children": [],
         "fileType": "file",
-        "isSelectedFile": true,
+        "isSelectedFile": false,
         "_id": "67d87dfb9f502e42bdab2c90",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d87dfb9f502e42bdab2c90"
       },
       {
@@ -9950,8 +10859,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67d87ef9dca32fd90b918740",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67d87ef9dca32fd90b918740"
       },
       {
@@ -9961,8 +10870,8 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67db61db5660f30fd8254410",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67db61db5660f30fd8254410"
       },
       {
@@ -9972,13 +10881,13 @@
         "fileType": "file",
         "isSelectedFile": false,
         "_id": "67db63ba5660f30fd8265489",
-        "createdAt": "2025-03-21T13:54:01.577Z",
-        "updatedAt": "2025-03-21T13:54:01.577Z",
+        "createdAt": "2025-04-04T14:51:14.859Z",
+        "updatedAt": "2025-04-04T14:51:14.859Z",
         "id": "67db63ba5660f30fd8265489"
       }
     ],
     "createdAt": "2025-03-16T14:01:28.737Z",
-    "updatedAt": "2025-03-21T13:54:01.577Z",
+    "updatedAt": "2025-04-04T14:51:14.859Z",
     "id": "CDwTbFgAL"
   },
   {
@@ -12987,6 +13896,258 @@
     "id": "1gZcIXjjs"
   },
   {
+    "_id": "gieEY0FBS",
+    "name": "Sampler_more_samples",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e5f6890d4d6766f8693615",
+          "67e5f6890d4d6766f8693616",
+          "67e5f6890d4d6766f8693625",
+          "67e5f6890d4d6766f8693626"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693614",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693614"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let sampler = new Tone.Sampler({\n\t\"A1\": \"samples/casio/A1.mp3\", \n  \"D2\": \"samples/casio/D2.mp3\", \n  \"A2\": \"samples/casio/A2.mp3\", \n  \"B1\": \"samples/casio/B1.mp3\", \n  \"C2\": \"samples/casio/C2.mp3\", \n  \"F2\": \"samples/casio/F2.mp3\", \n  \"E2\": \"samples/casio/E2.mp3\", \n  \"G2\": \"samples/casio/G2.mp3\", \n});\n\nsampler.envelope = {\n  attack: 0.2,\n  decay: 0,\n  sustain: 1,\n  release: 0.1\n}\nsampler.toMaster();\n\nfunction keyPressed() {\n  let pitch; \n  if(key == 'a'){\n  \tpitch = \"A1\";\n  }\n  else if(key == 's'){\n  \tpitch = \"B1\";\n  }\n  else if(key == 'd'){\n  \tpitch = \"C2\";\n  }\n  else if(key == 'f'){\n  \tpitch = \"D2\";\n  }\n  else if(key == 'g'){\n  \tpitch = \"E2\";\n  }\n  \n  if(pitch && sampler.loaded){\n    // Sampler will repitch the closest sample\n  \tsampler.triggerAttack(pitch);\n  }\n}\n\nfunction keyReleased() {\n  sampler.triggerRelease();\n}\n\nfunction setup() {\n\n}\n\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e5f6890d4d6766f8693625",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693625"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html>\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js\" type=\"text/javascript\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693615",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693615"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693626",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693626"
+      },
+      {
+        "name": "samples",
+        "content": "",
+        "children": [
+          "67e5f6890d4d6766f8693617"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693616",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693616"
+      },
+      {
+        "name": "casio",
+        "content": "",
+        "children": [
+          "67e5f6890d4d6766f8693618",
+          "67e5f6890d4d6766f8693619",
+          "67e5f6890d4d6766f869361a",
+          "67e5f6890d4d6766f869361b",
+          "67e5f6890d4d6766f869361c",
+          "67e5f6890d4d6766f869361d",
+          "67e5f6890d4d6766f869361e",
+          "67e5f6890d4d6766f869361f",
+          "67e5f6890d4d6766f8693620",
+          "67e5f6890d4d6766f8693621",
+          "67e5f6890d4d6766f8693622",
+          "67e5f6890d4d6766f8693623",
+          "67e5f6890d4d6766f8693624"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693617",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693617"
+      },
+      {
+        "name": "A2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/340fb98e-e3b2-4d16-bf57-b953ce238e4c.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693619",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693619"
+      },
+      {
+        "name": "As1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/479735c0-f473-4494-975c-dad92c2c21aa.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f869361a",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f869361a"
+      },
+      {
+        "name": "B1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/9b26ec06-bd6a-4ed4-ab77-689848b09190.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f869361b",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f869361b"
+      },
+      {
+        "name": "Cs2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/cff6989f-8ef1-47c9-a987-8146f19dab28.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f869361d",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f869361d"
+      },
+      {
+        "name": "C2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/df3934ad-dbdb-4794-a046-86b65dd69ae1.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f869361c",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f869361c"
+      },
+      {
+        "name": "D2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/a3d7a95b-4bc4-47e6-9700-db2cf4bd217c.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f869361e",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f869361e"
+      },
+      {
+        "name": "Ds2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/2a86fa2a-6cec-49ca-99d4-569b642c00a4.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f869361f",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f869361f"
+      },
+      {
+        "name": "E2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/3eb5836c-c17d-4bac-93ba-29177a43008f.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693620",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693620"
+      },
+      {
+        "name": "F2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/b785b0e1-24e4-434a-8d65-5e0c6a820d32.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693621",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693621"
+      },
+      {
+        "name": "Fs2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/8ec34ae9-d102-41be-abe6-b74ea4817c06.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693622",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693622"
+      },
+      {
+        "name": "G2.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/f6bdfae2-c3d5-4654-b2c2-a8fb166969a7.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693623",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693623"
+      },
+      {
+        "name": "Gs1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/e462d444-dcda-4ca9-b1fb-519e33a20a73.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693624",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693624"
+      },
+      {
+        "name": "A1.mp3",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/ac13192b-7c35-42dd-bb06-fdc76ba95cf8.mp3",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e5f6890d4d6766f8693618",
+        "createdAt": "2025-03-28T01:08:31.124Z",
+        "updatedAt": "2025-03-28T01:08:31.124Z",
+        "id": "67e5f6890d4d6766f8693618"
+      }
+    ],
+    "createdAt": "2025-03-28T01:08:25.757Z",
+    "updatedAt": "2025-03-28T01:08:31.124Z",
+    "id": "gieEY0FBS"
+  },
+  {
     "_id": "mgWmC7PwD",
     "name": "Select Cameras copy",
     "files": [
@@ -14128,6 +15289,216 @@
     "id": "2m3G6YlVi"
   },
   {
+    "_id": "PCqTAKnLM",
+    "name": "Text in 3D copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e9b6c23b9e4a6e0b1c93f9",
+          "67e9b6c23b9e4a6e0b1c93fa",
+          "67e9b6c23b9e4a6e0b1c93fb",
+          "67e9b6c23b9e4a6e0b1c93fc"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e9b6c23b9e4a6e0b1c93f8",
+        "createdAt": "2025-03-30T22:44:02.141Z",
+        "updatedAt": "2025-03-30T22:44:02.141Z",
+        "id": "67e9b6c23b9e4a6e0b1c93f8"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// https://editor.p5js.org/Jennybkowalski/sketches/N-geQ3DRx\nlet font;\nlet textA = \"he had just been\\na concept\";\nlet textB = \"you put words\\nto the page\";\nlet currentText = textA;\nlet nextText = textB;\nlet lerpAmt = 0;\nlet transitioning = false;\n\nfunction preload() {\n  font = loadFont('Staatliches-Regular.ttf');\n}\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight, WEBGL);\n}\n\nfunction draw() {\n  blendMode(BLEND);\n  background('red');\n  textFont(font);\n  textAlign(CENTER, CENTER);\n  textSize(50);\n\n  rotateY(map(frameCount, 0, 600, 0, TWO_PI));\n\n  push();\n  \n  // Interpolating the opacity for smooth transition\n  let lerpAlpha = lerp(255, 0, lerpAmt);\n  let nextAlpha = lerp(0, 255, lerpAmt);\n\n  // Display current text\n  fill(255, lerpAlpha);\n  text(currentText, 0, 0);\n\n  // Display next text fading in\n  fill(255, nextAlpha);\n  text(nextText, 0, 0);\n\n  pop();\n\n  // Handle the transition progress\n  if (transitioning) {\n    lerpAmt += 0.02; // Speed of transition\n    if (lerpAmt >= 1) {\n      lerpAmt = 0;\n      transitioning = false;\n      // Swap texts\n      let temp = currentText;\n      currentText = nextText;\n      nextText = temp;\n    }\n  }\n}\n\n// Trigger text change when mouse is pressed\nfunction mousePressed() {\n  if (!transitioning) {\n    transitioning = true;\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e9b6c23b9e4a6e0b1c93fb",
+        "createdAt": "2025-03-30T22:44:02.141Z",
+        "updatedAt": "2025-03-30T22:44:02.141Z",
+        "id": "67e9b6c23b9e4a6e0b1c93fb"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n  \n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9b6c23b9e4a6e0b1c93fa",
+        "createdAt": "2025-03-30T22:44:02.141Z",
+        "updatedAt": "2025-03-30T22:44:02.141Z",
+        "id": "67e9b6c23b9e4a6e0b1c93fa"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9b6c23b9e4a6e0b1c93fc",
+        "createdAt": "2025-03-30T22:44:02.141Z",
+        "updatedAt": "2025-03-30T22:44:02.141Z",
+        "id": "67e9b6c23b9e4a6e0b1c93fc"
+      },
+      {
+        "name": "Staatliches-Regular.ttf",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/14bb9df4-5128-4fb2-8873-e4688f1577ea.ttf",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9b6c23b9e4a6e0b1c93f9",
+        "createdAt": "2025-03-30T22:44:02.141Z",
+        "updatedAt": "2025-03-30T22:44:02.141Z",
+        "id": "67e9b6c23b9e4a6e0b1c93f9"
+      }
+    ],
+    "createdAt": "2025-03-30T21:25:22.485Z",
+    "updatedAt": "2025-03-30T22:44:02.141Z",
+    "id": "PCqTAKnLM"
+  },
+  {
+    "_id": "b9zSWwvDk",
+    "name": "Text in 3D copy copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e9c0f8fdf2346c6777c4b9",
+          "67e9c0f8fdf2346c6777c4ba",
+          "67e9c0f8fdf2346c6777c4bb",
+          "67e9c0f8fdf2346c6777c4bc"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e9c0f8fdf2346c6777c4b8",
+        "createdAt": "2025-03-30T22:40:23.139Z",
+        "updatedAt": "2025-03-30T22:40:23.139Z",
+        "id": "67e9c0f8fdf2346c6777c4b8"
+      },
+      {
+        "name": "sketch.js",
+        "content": "// https://editor.p5js.org/Jennybkowalski/sketches/N-geQ3DRx\nlet font;\nlet textA = \"he had just been\\na concept\";\nlet textB = \"you put words\\nto the page\";\nlet currentText = textA;\nlet nextText = textB;\nlet lerpAmt = 0;\nlet transitioning = false;\n\nfunction preload() {\n  font = loadFont(\"Staatliches-Regular.ttf\");\n}\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight, WEBGL);\n}\n\nfunction draw() {\n  blendMode(BLEND);\n  background(\"black\");\n  textFont(font);\n  textAlign(CENTER, CENTER);\n  textSize(50);\n  orbitControl();\n  //rotateY(map(frameCount, 0, 600, 0, TWO_PI));\n  //rotateY(map(mouseX,0,height,0,TWO_PI));\n\n  push();\n\n  // Interpolating the opacity for smooth transition\n  let lerpAlpha = lerp(255, 0, lerpAmt);\n  let nextAlpha = lerp(0, 255, lerpAmt);\n\n  //Display current text\n    push()\n  for (let i = 0; i <=200; i=i+20) {\n    push()\n    translate(0,0,i)\n  //fill(255, lerpAlpha);\n    fill(255, 0,255,i);\n    text(textA, 0, 0);\n    pop()\n  }\n    push()\n  rotateY(PI)\nfor (let i = 200; i >=0; i=i-20) {\n    push()\n    translate(0,0,i)\n   // fill(255, lerpAlpha);\n    fill(255, 0,255,i);\n    text(textB, 0, 0);\n    pop()\n  }\n  pop()\n\n\n  // Display next text fading in\n  fill(255, nextAlpha);\n  text(nextText, 0, 0);\n\n  pop();\n\n  // Handle the transition progress\n  if (transitioning) {\n    lerpAmt += 0.02; // Speed of transition\n    if (lerpAmt >= 1) {\n      lerpAmt = 0;\n      transitioning = false;\n      // Swap texts\n      let temp = currentText;\n      currentText = nextText;\n      nextText = temp;\n    }\n  }\n}\n\n// // Trigger text change when mouse is pressed\n// function mousePressed() {\n//   if (!transitioning) {\n//     transitioning = true;\n//   }\n// }\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e9c0f8fdf2346c6777c4bb",
+        "createdAt": "2025-03-30T22:40:23.139Z",
+        "updatedAt": "2025-03-30T22:40:23.139Z",
+        "id": "67e9c0f8fdf2346c6777c4bb"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n  \n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9c0f8fdf2346c6777c4ba",
+        "createdAt": "2025-03-30T22:40:23.139Z",
+        "updatedAt": "2025-03-30T22:40:23.139Z",
+        "id": "67e9c0f8fdf2346c6777c4ba"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9c0f8fdf2346c6777c4bc",
+        "createdAt": "2025-03-30T22:40:23.139Z",
+        "updatedAt": "2025-03-30T22:40:23.139Z",
+        "id": "67e9c0f8fdf2346c6777c4bc"
+      },
+      {
+        "name": "Staatliches-Regular.ttf",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/3785c3d3-97eb-433e-ba18-b033989c9fca.ttf",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9c0f8fdf2346c6777c4b9",
+        "createdAt": "2025-03-30T22:40:23.139Z",
+        "updatedAt": "2025-03-30T22:40:23.139Z",
+        "id": "67e9c0f8fdf2346c6777c4b9"
+      }
+    ],
+    "createdAt": "2025-03-30T22:08:56.954Z",
+    "updatedAt": "2025-03-30T22:40:23.139Z",
+    "id": "b9zSWwvDk"
+  },
+  {
+    "_id": "gzMBNSyM-",
+    "name": "Text in 3D copy copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67e9bd81fdf2346c6777c4b4",
+          "67e9bd81fdf2346c6777c4b5",
+          "67e9bd81fdf2346c6777c4b6",
+          "67e9bd81fdf2346c6777c4b7"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67e9bd81fdf2346c6777c4b3",
+        "createdAt": "2025-03-30T22:06:06.802Z",
+        "updatedAt": "2025-03-30T22:06:06.802Z",
+        "id": "67e9bd81fdf2346c6777c4b3"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let font;\nlet textA = \"he had just been\\na concept\";\nlet textB = \"you put words to the page\";\nlet currentText = textA;\nlet rotationY = 0;\nlet lastSwitched = false; // Prevents multiple switches per cycle\n\nfunction preload() {\n  font = loadFont('Staatliches-Regular.ttf');\n}\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight, WEBGL);\n}\n\nfunction draw() {\n  blendMode(BLEND);\n  background('red');\n  textFont(font);\n  textAlign(CENTER, CENTER);\n  textSize(50);\n\n  // Rotate text\n  rotationY += 0.02;\n  if (rotationY >= TWO_PI) {\n    rotationY -= TWO_PI; // Keep rotation in range\n    lastSwitched = false; // Reset switch flag after full cycle\n  }\n\n  // Swap text at 180° (π) and 360° (0 or TWO_PI)\n  if ((abs(rotationY - PI) < 0.02 || abs(rotationY - TWO_PI) < 0.02) && !lastSwitched) {\n    currentText = (currentText === textA) ? textB : textA;\n    lastSwitched = true; // Prevents rapid switching\n  }\n\n  rotateY(rotationY);\n\n  push();\n  fill(255);\n  text(currentText, 0, 0);\n  pop();\n//  noLoop()\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67e9bd81fdf2346c6777c4b6",
+        "createdAt": "2025-03-30T22:06:06.802Z",
+        "updatedAt": "2025-03-30T22:06:06.802Z",
+        "id": "67e9bd81fdf2346c6777c4b6"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n  \n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9bd81fdf2346c6777c4b5",
+        "createdAt": "2025-03-30T22:06:06.802Z",
+        "updatedAt": "2025-03-30T22:06:06.802Z",
+        "id": "67e9bd81fdf2346c6777c4b5"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9bd81fdf2346c6777c4b7",
+        "createdAt": "2025-03-30T22:06:06.802Z",
+        "updatedAt": "2025-03-30T22:06:06.802Z",
+        "id": "67e9bd81fdf2346c6777c4b7"
+      },
+      {
+        "name": "Staatliches-Regular.ttf",
+        "content": "",
+        "url": "https://assets.editor.p5js.org/65ef285a10d9f8001c340f79/a7abbb9b-bcce-4591-8c07-827a0b6ee89e.ttf",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67e9bd81fdf2346c6777c4b4",
+        "createdAt": "2025-03-30T22:06:06.802Z",
+        "updatedAt": "2025-03-30T22:06:06.802Z",
+        "id": "67e9bd81fdf2346c6777c4b4"
+      }
+    ],
+    "createdAt": "2025-03-30T21:54:09.523Z",
+    "updatedAt": "2025-03-30T22:06:06.802Z",
+    "id": "gzMBNSyM-"
+  },
+  {
     "_id": "hmyCLota9",
     "name": "Tone.Oscillator starter",
     "files": [
@@ -14252,6 +15623,117 @@
     "createdAt": "2024-11-26T19:28:06.638Z",
     "updatedAt": "2024-11-26T20:03:41.445Z",
     "id": "ppvLe_mKm"
+  },
+  {
+    "_id": "tcd70av3o",
+    "name": "tracery template copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67ec8ef93e157627ec490da3",
+          "67ec8ef93e157627ec490da4",
+          "67ec8ef93e157627ec490da5"
+        ],
+        "fileType": "folder",
+        "isSelectedFile": false,
+        "_id": "67ec8ef93e157627ec490da2",
+        "createdAt": "2025-04-01T22:29:25.264Z",
+        "updatedAt": "2025-04-01T22:29:25.264Z",
+        "id": "67ec8ef93e157627ec490da2"
+      },
+      {
+        "name": "sketch.js",
+        "content": "let genButton;\n\nfunction setup() { \n  noCanvas();\n  background(255);\n  genButton = createButton(\"Click to generate\");\n  genButton.mousePressed(generate);\n} \n\nfunction draw() { \n}\n\nfunction generate() {\n  // removes existing outputs from the page (if any)\n  for (let elem of selectAll(\"p\")) {\n    elem.remove();\n  }\n  \n  // remove this loop or change the loop condition if you only want\n  // to produce a single output!\n  for (let i = 0; i < 10; i++) {\n    let grammar = tracery.createGrammar(grammarSource);\n    grammar.addModifiers(tracery.baseEngModifiers);\n    let output = grammar.flatten(\"#origin#\");\n    createP(output);\n  }\n}\n\n// write your grammar below, or cut-and-paste from another tool (as the value for variable \"grammarSource\")\nlet grammarSource = {\n  \"origin\": \"#interjection.capitalize#, #name#! I'm #profession.a#, not #profession.a#!\",\n  \"interjection\": [\"alas\", \"congratulations\", \"eureka\", \"fiddlesticks\",\n    \"good grief\", \"hallelujah\", \"oops\", \"rats\", \"thanks\", \"whoa\", \"yes\"],\n  \"name\": [\"Jim\", \"John\", \"Tom\", \"Steve\", \"Kevin\", \"Gary\", \"George\", \"Larry\"],\n  \"profession\": [\n        \"accountant\",\n        \"actor\",\n        \"archeologist\",\n        \"astronomer\",\n        \"audiologist\",\n        \"bartender\",\n        \"butcher\",\n        \"carpenter\",\n        \"composer\",\n        \"crossing guard\",\n        \"curator\",\n        \"detective\",\n        \"economist\",\n        \"editor\",\n        \"engineer\",\n        \"epidemiologist\",\n        \"farmer\",\n        \"flight attendant\",\n        \"forest fire prevention specialist\",\n        \"graphic designer\",\n        \"hydrologist\",\n        \"librarian\",\n        \"lifeguard\",\n        \"locksmith\",\n        \"mathematician\",\n        \"middle school teacher\",\n        \"nutritionist\",\n        \"painter\",\n        \"physical therapist\",\n        \"priest\",\n        \"proofreader\",\n        \"rancher\",\n        \"referee\",\n        \"reporter\",\n        \"sailor\",\n        \"sculptor\",\n        \"singer\",\n        \"sociologist\",\n        \"stonemason\",\n        \"surgeon\",\n        \"tailor\",\n        \"taxi driver\",\n        \"teacher assistant\",\n        \"teacher\",\n        \"teller\",\n        \"therapist\",\n        \"tour guide\",\n        \"translator\",\n        \"travel agent\",\n        \"umpire\",\n        \"undertaker\",\n        \"urban planner\",\n        \"veterinarian\",\n        \"web developer\",\n        \"weigher\",\n        \"welder\",\n        \"woodworker\",\n        \"writer\",\n        \"zoologist\"\n  ]\n};",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67ec8ef93e157627ec490da4",
+        "createdAt": "2025-04-01T22:29:25.264Z",
+        "updatedAt": "2025-04-01T22:29:25.264Z",
+        "id": "67ec8ef93e157627ec490da4"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html>\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.dom.min.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.sound.min.js\"></script>\n    <script src=\"https://cdn.rawgit.com/v21/tracery/master/tracery.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ec8ef93e157627ec490da3",
+        "createdAt": "2025-04-01T22:29:25.264Z",
+        "updatedAt": "2025-04-01T22:29:25.264Z",
+        "id": "67ec8ef93e157627ec490da3"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": false,
+        "_id": "67ec8ef93e157627ec490da5",
+        "createdAt": "2025-04-01T22:29:25.264Z",
+        "updatedAt": "2025-04-01T22:29:25.264Z",
+        "id": "67ec8ef93e157627ec490da5"
+      }
+    ],
+    "createdAt": "2025-04-02T01:12:25.594Z",
+    "updatedAt": "2025-04-02T01:12:25.594Z",
+    "id": "tcd70av3o"
+  },
+  {
+    "_id": "Q8vzZpAZp",
+    "name": "vector arrow copy",
+    "files": [
+      {
+        "name": "root",
+        "content": "",
+        "children": [
+          "67eb5a018fbe378bae17979d",
+          "67eb5a018fbe378bae17979e",
+          "67eb5a018fbe378bae17979f"
+        ],
+        "fileType": "folder",
+        "_id": "67eb5a018fbe378bae17979c",
+        "createdAt": "2020-03-06T00:42:57.930Z",
+        "updatedAt": "2020-03-06T00:42:57.930Z",
+        "id": "67eb5a018fbe378bae17979c"
+      },
+      {
+        "name": "sketch.js",
+        "content": "function setup() {\n  createCanvas(400, 400);\n}\n\nfunction draw() {\n  background(220);\n  translate(200,200);  //origin is center \n  circle(0,0,20)\n  var mouseVec = createVector(mouseX-200, mouseY-200);\n  line(0,0,mouseVec.x, mouseVec.y);\n  center = createVector(0,0)\n  arrowHead(center, mouseVec)\n  \n}\nfunction arrowHead(start, vector){\n  push()   //start new drawing state\n  var norm = createVector(vector.x, vector.y)\n  norm.normalize()\n  // applyMatrix(1,0,0,1,vector.x - start.x,vector.y - start.y)\n  applyMatrix(norm.x,norm.y,-norm.y, norm.x, vector.x - start.x,vector.y - start.y)\n\n  triangle(0,6,12,0,0,-6)\n  pop()\n}\n",
+        "children": [],
+        "fileType": "file",
+        "isSelectedFile": true,
+        "_id": "67eb5a018fbe378bae17979e",
+        "createdAt": "2020-03-06T00:42:57.930Z",
+        "updatedAt": "2020-03-06T00:42:57.930Z",
+        "id": "67eb5a018fbe378bae17979e"
+      },
+      {
+        "name": "index.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js\"></script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <meta charset=\"utf-8\" />\n\n  </head>\n  <body>\n    <script src=\"sketch.js\"></script>\n  </body>\n</html>\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "67eb5a018fbe378bae17979d",
+        "createdAt": "2020-03-06T00:42:57.930Z",
+        "updatedAt": "2020-03-06T00:42:57.930Z",
+        "id": "67eb5a018fbe378bae17979d"
+      },
+      {
+        "name": "style.css",
+        "content": "html, body {\n  margin: 0;\n  padding: 0;\n}\ncanvas {\n  display: block;\n}\n",
+        "children": [],
+        "fileType": "file",
+        "_id": "67eb5a018fbe378bae17979f",
+        "createdAt": "2020-03-06T00:42:57.931Z",
+        "updatedAt": "2020-03-06T00:42:57.931Z",
+        "id": "67eb5a018fbe378bae17979f"
+      }
+    ],
+    "createdAt": "2025-04-01T03:14:09.350Z",
+    "updatedAt": "2025-04-01T03:14:09.350Z",
+    "id": "Q8vzZpAZp"
   },
   {
     "_id": "MvQ3u87xH",
